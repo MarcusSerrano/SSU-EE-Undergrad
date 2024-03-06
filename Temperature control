@@ -1,0 +1,159 @@
+//-----------------------------
+// Title: Tempcontrol
+//-----------------------------
+// Purpose: This program measures the ambient temperature, compares it to the
+//	    set temperature, and determines if heating or cooling should be
+//	    enabled.
+// Dependencies: AssemblyConfig.inc
+// Compiler: MPLAB X IDE v6.20
+// Author: Marcus Serrano 
+// OUTPUTS: PORT D 1 & 2; connected to heating, cooling and an LED for each output. 
+// INPUTS: Set temperatures via keypad, and measured temperature via thermistor.
+// Versions:
+//  	V1.0: 3/4/2024 - First version 
+//  	V1.1: 3/5/2024 - First sucessful compiling, and debugging.
+//-----------------------------
+
+//----------------
+// Program Initialization via file inclusion and memory initialization.
+//----------------
+#include "C:\Users\Marcus Serrano\Desktop\PIC\MPLAB\Tempcontrol.X\AssemblyConfig.inc"
+#include <xc.inc>
+ORG 0X20
+PSECT absdata,abs,ovrld        ; Do not change
+movlw 0x0
+movwf TRISD
+
+//----------------
+// REGISTERS
+//----------------
+measuredTempReg	    equ	0x21 ; thermistor measured temperature location
+refTempReg	    equ	0x20 ; reference temperature in HEX, between +10 and +50c
+contReg		    equ	0x22 ; control register location
+
+//----------------
+// PROGRAM INPUTS
+//----------------
+#define measuredTemp 0 ; this is the input value in decimal
+#define refTemp	15 ; this is the input value in decimal
+    
+    
+//----------------
+// PROGRAM OUTPUTS
+//----------------
+//measuredTempDecimal	equ 70 ; this is the input value in decimal
+//refTempInputDecimal	equ 25 ; this is the input value in decimal
+#define cooler		PORTD,2 ;cooler is set to portD2
+#define heater		PORTD,1 ;heater is set to portD1
+
+//----------------
+// WRITE INPUTS TO REGISTERS	
+//----------------
+    movlw measuredTemp
+    movwf measuredTempReg,0
+    movlw refTemp
+    movwf refTempReg,0
+
+    
+//----------------
+// PROGRAM CONSTANTS	
+//---------------- 
+    movlw -20
+    movwf 0x30,1
+    movlw 60
+    movwf 0x31,1
+    
+    movlw 10
+    movwf 0x32,1
+    movlw 50
+    movwf 0x33,1
+    
+//----------------
+// INPUT VIABILITY
+//----------------    
+   
+  ;check if measuredtemperature is between -20 and +60 
+;  movlw measuredTemp
+;  cpfslt 0x31,1
+;  cpfsgt 0x30,1	    ;skipped if the contents of f are less than w.
+;  goto ending	    ;skipped if the contents of f are greater than w.
+  
+;  ;check if refTemp is between +10 and +50 
+;  movlw refTemp
+;  cpfsgt 0x32,1
+;  cpfslt 0x33,1
+;  goto ending
+  
+
+   
+//----------------
+// STORE NIBBLES OF INPUTS IN REGISTERS.
+//----------------
+  ;4[b]4[a] reg 0x60 = [a] reg 0x61 = [b] reg 0x62 = [c]
+  movlw refTemp ;load refTemp
+  daw	;BCD wreg
+  movwf 0x61,1
+  movwf 0x62,1
+  
+  bcf 0x61,0,1
+  bcf 0x61,1,1
+  bcf 0x61,2,1
+  bcf 0x61,3,1
+  bcf 0x62,4,1
+  bcf 0x62,5,1
+  bcf 0x62,6,1
+  bcf 0x62,7,1
+  swapf 0x61,1,1
+  
+  movlw measuredTemp ;load refTemp
+  daw	;BCD wreg
+  movwf 0x71,1
+  movwf 0x72,1
+  
+  bcf 0x71,0,1
+  bcf 0x71,1,1
+  bcf 0x71,2,1
+  bcf 0x71,3,1
+  bcf 0x72,4,1
+  bcf 0x72,5,1
+  bcf 0x72,6,1
+  bcf 0x72,7,1
+  swapf 0x71,1,1
+  
+//----------------
+// LOGIC
+//----------------
+   
+  GOTO  logic1
+    
+    logic1: ;reftemp[f]>measuredtemp[f] goto heat
+    movlw measuredTemp
+    cpfsgt refTempReg,1 
+    goto logic2;SKIP IF ref>meas
+    goto heat
+    
+    logic2:;reftemp[f]<measuredtemp[f] goto cool
+    movlw measuredTemp
+    cpfslt refTempReg,1 
+    goto ending;SKIP IF ref<meas
+    goto cool
+    
+    cool:
+    movlw 0x02
+    movwf contReg,1
+    
+    movlw 0x02
+    movwf PORTD
+    goto ending
+    
+    
+    heat:
+    movlw 0x01
+    movwf contReg,1
+    
+    movlw 0x01
+    movwf PORTD
+    goto ending
+   
+    ending:
+    end
