@@ -12,6 +12,8 @@
 // Versions:
 //  	V1.0: 3/4/2024 - First version 
 //  	V1.1: 3/5/2024 - First sucessful compiling, and debugging.
+//      V1.2: 3/6/2024 - program functions but decimal output does not work.
+//	V1.3: 3/7/2024 - program functions but decimal output still not working.
 //-----------------------------
 
 //----------------
@@ -56,7 +58,7 @@ contReg		    equ	0x22 ; control register location
 
     
 //----------------
-// PROGRAM CONSTANTS	
+// PROGRAM CONSTANTS (USED FOR INPUT VIABILITY SECTION)	
 //---------------- 
     movlw -20
     movwf 0x30,1
@@ -69,19 +71,19 @@ contReg		    equ	0x22 ; control register location
     movwf 0x33,1
     
 //----------------
-// INPUT VIABILITY
+// INPUT VIABILITY (NOT WORKING CURRENTLY)
 //----------------    
    
-  ;check if measuredtemperature is between -20 and +60 
+;;;check if measuredtemperature is between -20 and +60 
 ;  movlw measuredTemp
 ;  cpfslt 0x31,1
 ;  cpfsgt 0x30,1	    ;skipped if the contents of f are less than w.
 ;  goto ending	    ;skipped if the contents of f are greater than w.
-  
-;  ;check if refTemp is between +10 and +50 
+;  
+;;check if refTemp is between +10 and +50 
 ;  movlw refTemp
-;  cpfsgt 0x32,1
 ;  cpfslt 0x33,1
+;  cpfsgt 0x32,1
 ;  goto ending
   
 
@@ -89,9 +91,10 @@ contReg		    equ	0x22 ; control register location
 //----------------
 // STORE NIBBLES OF INPUTS IN REGISTERS.
 //----------------
-  ;4[b]4[a] reg 0x60 = [a] reg 0x61 = [b] reg 0x62 = [c]
-  movlw refTemp ;load refTemp
-  daw	;BCD wreg
+;4[b]4[a] reg 0x60 = [a] reg 0x61 = [b] reg 0x62 = [c]
+movlw refTemp ;load refTemp 
+daw
+;write to registers.
   movwf 0x61,1
   movwf 0x62,1
   
@@ -140,9 +143,8 @@ contReg		    equ	0x22 ; control register location
     
     cool:
     movlw 0x02
-    movwf contReg,1
-    
-    movlw 0x02
+    movwf contReg,1   
+    movlw 0x04
     movwf PORTD
     goto ending
     
@@ -150,8 +152,7 @@ contReg		    equ	0x22 ; control register location
     heat:
     movlw 0x01
     movwf contReg,1
-    
-    movlw 0x01
+    movlw 0x02
     movwf PORTD
     goto ending
    
