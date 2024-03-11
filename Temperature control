@@ -15,6 +15,7 @@
 //      V1.2: 3/6/2024 - program functions but decimal output does not work.
 //	V1.3: 3/7/2024 - program functions but decimal output still not working.
 //      V1.4: 3/10/2024 - Fixed decimal conversion.
+//	V1.5: 3/11/2024 - Fixed input viability calculator. **PROJECT COMPLETE**    
 //-----------------------------
 
 //----------------
@@ -54,44 +55,30 @@ contReg		    equ	0x22 ; control register location
     movwf measuredTempReg,0
     movlw refTemp
     movwf refTempReg,0
-    
+       
 //----------------
-// PROGRAM CONSTANTS (USED FOR INPUT VIABILITY SECTION)	
-//---------------- 
-;    movlw -20
-;    movwf 0x30,1
-;    movlw 60
-;    movwf 0x31,1
-;    
-;    movlw 10
-;    movwf 0x32,1
-;    movlw 50
-;    movwf 0x33,1
-    
-//----------------
-// INPUT VIABILITY (NOT WORKING CURRENTLY)
+// INPUT VIABILITY
 //----------------    
-;   
-;//VERIFY IF MEASUREDTEMP IS BELOW 60
-;    movlw 60
-;    subwf measuredTempReg ;[measuredTemp - 60]
-;    bnn ending ;branch if result is non negative i.e. measuredtemp exceeds upper limit of 50.
-;
-;//VERIFY IF REFTEMP IS BELOW 50
-;    movlw 50
-;    subwf refTempReg ; refTemp - 50
-;    bnn ending
-;
-;//VERIFY THAT MEASUREDTEMP IS ABOVE -20
-;    movlw 20
-;    addwf measuredTempReg,1
-;    bn ending
-;    
-;//VERIFY THAT REFTEMP IS ABOVE 10
-;    movlw 10
-;    subwf measuredTempReg,1 ;measuredtemp - 10 branch if negative.
-;    bn ending    
-;    
+   
+//VERIFY IF MEASUREDTEMP IS BELOW 60
+    movlw 60
+    subwf measuredTempReg ;[measuredTemp - 60]
+    bnn ending ;branch if result is non negative i.e. measuredtemp exceeds upper limit of 50.
+
+//VERIFY IF REFTEMP IS BELOW 50
+    movlw 50
+    subwf refTempReg ; refTemp - 50
+    bnn ending
+
+//VERIFY THAT MEASUREDTEMP IS ABOVE -20
+    movlw measuredTemp
+    addlw 20
+    bn ending ;end program if measuredtemp is less than -20
+    
+//VERIFY THAT REFTEMP IS ABOVE 10
+    movlw 10
+    sublw refTemp
+    bn ending
 
 //----------------
 // STORE NIBBLES OF INPUTS IN REGISTERS.
