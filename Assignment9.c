@@ -5,8 +5,8 @@
  Dependencies: Assignment9configwords.h
  Compiler: MPLAB X IDE v6.20
  Author: Marcus Serrano
- OUTPUTS: 7 segment display, relay, status LEDs, buzzer
- INPUTS: Photoresistors, emergency button
+ OUTPUTS: LCD.
+ INPUTS: Potentiometer.
  Versions:
  V1.0: First written 4/26/2024
  V1.1: Finished voltage divider implementation. 4/26/2024
