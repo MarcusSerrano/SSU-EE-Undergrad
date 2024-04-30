@@ -1,8 +1,18 @@
-/*
- * The purpose of this program is to demonstrate how a 20x2 LCD can be interfaced with a PIC processor.
- * Refer to the lecture slides for more details on the physical connections.
- * You may want to consider changing this code, as needed, depending on your hardware.
- * Author: Farid Farahmand
+/*-----------------------------
+ Title: Assignment9
+-----------------------------
+ Purpose: This program reads a voltage on RA0, and ouputs the result to an LCD.
+ Dependencies: Assignment9configwords.h
+ Compiler: MPLAB X IDE v6.20
+ Author: Marcus Serrano
+ OUTPUTS: 7 segment display, relay, status LEDs, buzzer
+ INPUTS: Photoresistors, emergency button
+ Versions:
+ V1.0: First written 4/26/2024
+ V1.1: Finished voltage divider implementation. 4/26/2024
+ V1.2: LCD and logic finished. 4/27/2024
+ V2.0: Completed photoresistor implementation. 4/27/2024
+-----------------------------
  */
 
 
@@ -50,15 +60,15 @@ are included.
  */
 
 /*****************************Main Program*******************************/
-void main(void) {    
+void main(void) {
     //initialize PORTB
     TRISB = 0;
     ANSELB = 0;
     PORTB = 0;
 
-    LCD_Init(); /* Initialize 16x2 LCD */  
+    LCD_Init(); /* Initialize 16x2 LCD */
     /* This function passes string to display */
-    LCD_String_xy(1, 0, "Input LUX:"); /* Display string at location(row,location). */
+    LCD_String_xy(1, 0, "Input Voltage:"); /* Display string at location(row,location). */
 
     //ADC Initialization
     ADC_Init(); //DO: CALL ADC_Init function defined below;    
@@ -66,28 +76,30 @@ void main(void) {
         ADCON0bits.GO = 1; //DO: Set ADCON0 Go to start conversion
         while (ADCON0bits.GO); //Wait for conversion done
         digital = (ADRESH * 256) | (ADRESL); /*Combine 8-bit LSB and 2-bit MSB*/
-        voltage = Vref / 4096;// DO: define voltage = Vref/4096 (note that voltage is float type
+        voltage = Vref / 4096; // DO: define voltage = Vref/4096 (note that voltage is float type
 
-                // DO: Write a code to translate the values from ADRESH:ADRESL register
-                //     pair to IO Port. In this case we can connect ADRESL to Port D
-                result = digital * voltage * 50 - 150;
-                
-                
-                //adjustment of LUX results, photoresistors arent linear, so manual adjustment is neccessary.
-                if (result < 0){result = 0;}
-                if (result > 60){result = result * 1.25;}
-                if (result > 100){result = result * 1.5;}
-                if (result > 160){result = result * 2;}
+        // DO: Write a code to translate the values from ADRESH:ADRESL register
+        //     pair to IO Port. In this case we can connect ADRESL to Port D
+        //result = digital * voltage * 50 - 150;
 
-                
-               /*This is used to convert integer value to ASCII string*/
-                sprintf(data, "%.0f", result);
-        strcat(data, " LUX             "); /*Concatenate result and unit to print*/
-        
-        
+        // Voltage divider.
+        result = digital * voltage;
+
+        //adjustment of LUX results, photoresistors arent linear, so manual adjustment is neccessary.
+        //                if (result < 0){result = 0;}
+        //                if (result > 60){result = result * 1.25;}
+        //                if (result > 100){result = result * 1.5;}
+        //                if (result > 160){result = result * 2;}
+
+
+        /*This is used to convert integer value to ASCII string*/
+        sprintf(data, "%.2f", result);
+        strcat(data, " V             "); /*Concatenate result and unit to print*/
+
+
         LCD_String_xy(2, 0, data); /*Display string at location(row,location). */
         __delay_ms(500);
-    }    
+    }
 }
 
 /****************************Functions********************************/
