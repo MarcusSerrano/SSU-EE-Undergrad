@@ -1,0 +1,84 @@
+/*
+---------------------------
+Title: luxsensor
+---------------------------
+Program Details:
+---------------------------
+Purpose: Monitors Light levels and performs operations as a result.
+Inputs: Photoresistor.
+Outputs: RGB LED & Buzzer
+Date: 9/29/25
+Compiler: Simulator Version 6.8
+Author: Marcus Serrano
+Versions:
+         V1 - Initial creation
+         V2 - Added caibration
+         V3 - fixed lux algorithm
+---------------------------
+File Dependencies:
+Arduino.h
+---------------------------
+Main Program
+---------------------------
+*/
+#include <Arduino.h>
+
+// gpio
+#define PIN_R D3          // GPIO0 ( PWM)
+#define PIN_G D1          // GPIO5  (PWM OK)
+#define PIN_B D2          // GPIO4  (PWM OK)
+#define PIN_BUZ D0        // GPIO16  (active buzzer)
+#define PIN_LDR A0        // analog in
+
+// settings
+const int   X_LUX     = 200;      // threshold 
+const int   LUX_MAX   = 1400;     
+
+void setup() {
+  pinMode(PIN_R, OUTPUT);
+  pinMode(PIN_G, OUTPUT);
+  pinMode(PIN_B, OUTPUT);
+  pinMode(PIN_BUZ, OUTPUT);
+  digitalWrite(PIN_BUZ, LOW);
+  Serial.begin(9600);
+}
+
+void loop() {
+  // read sensor and calculate lux
+  int a = analogRead(A0);                       // raw 0..1023
+    float voltage = (a / 1023.0) * 3.3;     // 0–3.3 V
+float lux = 0.0002 * a + 2.584;
+
+  // buzzer auto
+  if (lux < X_LUX) digitalWrite(PIN_BUZ, HIGH);
+  else              digitalWrite(PIN_BUZ, LOW);
+
+  // rgb
+  if (lux < X_LUX) {
+    analogWrite(PIN_R, 1023);
+    analogWrite(PIN_G, 1023);
+    analogWrite(PIN_B, 1023);
+  } else {
+    int gb = map(constrain(lux, X_LUX, LUX_MAX), X_LUX, LUX_MAX, 1023, 0);
+    analogWrite(PIN_R, 1023);
+    analogWrite(PIN_G, gb);
+    analogWrite(PIN_B, gb);
+  }
+
+  // serial display lux
+  delay(1000);
+    //Serial.print("Lux=");
+  Serial.print(lux);
+  //Serial.print(",");
+  //Serial.println(voltage, 3);  
+  //Serial.print("A0="); Serial.println(a);
+
+  // buzzer
+    char c = Serial.read();
+    if (c == 'b') {
+      digitalWrite(PIN_BUZ, HIGH);
+      Serial.print("Buzzer");
+      delay(5000);
+      digitalWrite(PIN_BUZ, LOW);
+    }
+}
