@@ -40,13 +40,13 @@
     <!-- Chart 1 -->
     <iframe 
       width="600" height="371" 
-      src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQT_Y0Yr7vqgMTkg9m3tKMo5_-mUnZkrB1H7M1njf47DjFYjtIOgh-M6eab_gdF20e_LDGlKLNPJXAq/pubchart?oid=912378720&amp;format=interactive">
+      src="">
     </iframe>
 
     <!-- Chart 2 -->
     <iframe 
       width="600" height="215" 
-      src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQT_Y0Yr7vqgMTkg9m3tKMo5_-mUnZkrB1H7M1njf47DjFYjtIOgh-M6eab_gdF20e_LDGlKLNPJXAq/pubchart?oid=510578795&amp;format=interactive">
+      src="">
     </iframe>
   </div>
 </body>
