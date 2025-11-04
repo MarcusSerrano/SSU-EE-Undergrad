@@ -1,0 +1,12 @@
+[Unit]
+Description=Send IP and MAC to server after boot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/bin/bash /home/marcus/ip-mac.sh
+Restart=no
+
+[Install]
+WantedBy=multi-user.target

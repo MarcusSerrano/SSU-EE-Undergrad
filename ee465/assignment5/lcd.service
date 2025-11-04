@@ -1,0 +1,21 @@
+[Unit]
+Description=LCD IP Display Service
+After=network-online.target
+
+[Service]
+Type=simple
+User=marcus
+Group=marcus
+WorkingDirectory=/home/marcus/Documents/lcd
+ExecStart=/home/marcus/Documents/lcd/.venv/bin/python -u /home/marcus/Documents/lcd/lcdService.py
+Restart=on-failure
+SupplementaryGroups=i2c
+
+[Install]
+WantedBy=multi-user.target
+
+[Unit]
+Description=LCD IP Display Service
+Wants=network-online.target
+After=network-online.target
+SupplementaryGroups=i2c gpio
