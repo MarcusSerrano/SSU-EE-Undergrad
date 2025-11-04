@@ -1,0 +1,18 @@
+[Unit]
+Description=Blink onboard ACT LED at startup (Bash, continuous)
+After=multi-user.target
+DefaultDependencies=yes
+ConditionPathExists=/sys/class/leds/ACT/brightness
+
+[Service]
+Type=simple
+ExecStartPre=/bin/sh -c 'echo none > /sys/class/leds/ACT/trigger || true'
+ExecStart=/opt/bootled/blink_act.sh
+User=root
+Restart=always
+RestartSec=2
+# Ensure the script sees SIGTERM so it can restore the trigger
+KillSignal=SIGTERM
+
+[Install]
+WantedBy=multi-user.target
