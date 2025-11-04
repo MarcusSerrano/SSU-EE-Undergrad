@@ -1,6 +1,12 @@
 #!/bin/bash
 # ledPingControl.sh - Control Pi onboard LED via ICMP ping patterns or lengths.
 
+# How to use this script, you probably have to stop the bootled.service to allow for this to run.
+#chmod +x ledPingControl.sh
+#sudo ./ledPingControl.sh
+#ping -c 1 -p aaae <pi_ip>   # LED ON
+#ping -c 1 -p abae <pi_ip>   # LED OFF
+
 LED="/sys/class/leds/led0"
 PATTERN_ON="aa:ae"
 PATTERN_OFF="ab:ae"
