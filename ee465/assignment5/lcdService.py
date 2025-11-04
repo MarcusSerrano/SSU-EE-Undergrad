@@ -16,7 +16,7 @@ from RPLCD.i2c import CharLCD
 I2C_ADDRESS = 0x27
 I2C_PORT = 1
 LCD_COLS, LCD_ROWS = 16, 2
-BUTTON_PIN = 17                 # BCM numbering (pin 11)
+BUTTON_PIN = 21                 # BCM numbering (pin 40)
 PREFER_IFACES = ("wlan0", "eth0")
 # ------------------------------------------------------------
 
