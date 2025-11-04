@@ -80,7 +80,7 @@ def main():
     iface, ip = None, None
     while running and not ip:
         iface, ip = pick_iface_with_ip()
-        time.sleep(0.3)
+        time.sleep(1)
 
     last = ""          # last text shown on LCD
     last_ip = ip       # remember last IP we displayed
@@ -100,7 +100,7 @@ def main():
         text = (mac_of(iface) if pressed else (last_ip or "No network"))
         last = write_line1(text, last)
 
-        time.sleep(0.2)  # simple, steady poll rate
+        time.sleep(1)  # simple, steady poll rate
 
 if __name__ == "__main__":
     try:
