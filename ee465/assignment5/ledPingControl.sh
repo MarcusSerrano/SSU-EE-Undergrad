@@ -1,54 +1,59 @@
 #!/bin/bash
 # ledPingControl.sh - Control Pi onboard LED via ICMP ping patterns or lengths.
+# 
+# STOP BOOTLED OR THIS WILL NOT WORK
+# 
+# sudo systemctl stop bootled.service 
+# sudo systemctl disable bootled.service
+#
+# chmod =777 ledPingControl.sh
+# sudo ./ledPingControl.sh
+# Linux pings
+# ping -c 1 -p aaae <pi_ip>   # LED ON
+# ping -c 1 -p abae <pi_ip>   # LED OFF
+#
+# Windows pings:
+# nping --icmp --data aaae <pi_ip>   # LED ON
+# nping --icmp --data abae <pi_ip>   # LED OFF
 
-# How to use this script, you probably have to stop the bootled.service to allow for this to run.
-#chmod +x ledPingControl.sh
-#sudo ./ledPingControl.sh
-#ping -c 1 -p aaae <pi_ip>   # LED ON
-#ping -c 1 -p abae <pi_ip>   # LED OFF
+# LED sysfs path (ACT LED)
+LED="/sys/class/leds/ACT"
 
-LED="/sys/class/leds/led0"
-PATTERN_ON="aa:ae"
-PATTERN_OFF="ab:ae"
-LEN_ON=3
-LEN_OFF=2
+# Hex payload patterns (case-insensitive)
+PATTERN_ON="aaae"
+PATTERN_OFF="abae"
 
-# Manual LED control
+# Ensure tshark is available
+if ! command -v tshark >/dev/null; then
+  echo "Error: tshark not found. Install it with:"
+  echo "  sudo apt install tshark -y"
+  exit 1
+fi
+
+# Disable automatic kernel trigger (manual LED control)
 echo none | sudo tee "$LED/trigger" >/dev/null
 
+# LED control functions
 led_on()  { echo 1 | sudo tee "$LED/brightness" >/dev/null; echo "LED ON"; }
 led_off() { echo 0 | sudo tee "$LED/brightness" >/dev/null; echo "LED OFF"; }
 
-# Get Pi IP
+# Get Pi's IP address (first one found)
 IP=$(hostname -I | awk '{print $1}')
-echo "Listening for pings to $IP..."
-echo "Rules: $PATTERN_ON/$LEN_ON=ON, $PATTERN_OFF/$LEN_OFF=OFF"
+echo "Listening for ICMP packets to $IP..."
+echo "Patterns: $PATTERN_ON → ON, $PATTERN_OFF → OFF"
+echo "Press Ctrl+C to stop."
 
-# Use tshark if available, else tcpdump
-if command -v tshark >/dev/null; then
-  sudo tshark -i any -l -Y "icmp.type==8 && ip.dst==$IP" -T fields -e data.data -e data.len 2>/dev/null |
-  while IFS=$'\t' read -r data len; do
-    data=$(echo "$data" | tr 'A-Z' 'a-z')
-    if [[ "$data" == "$PATTERN_ON" ]]; then led_on
-    elif [[ "$data" == "$PATTERN_OFF" ]]; then led_off
-    elif [[ "$len" -eq "$LEN_ON" ]]; then led_on
-    elif [[ "$len" -eq "$LEN_OFF" ]]; then led_off
-    else echo "PING received ($len bytes)"; fi
-  done
-else
-  echo "Using tcpdump fallback..."
-  sudo tcpdump -l -n -i any -x "icmp[icmptype]==8 and dst host $IP" 2>/dev/null |
-  awk '/ICMP echo request/ {next} /^[[:space:]]*[0-9a-f]+:/ {
-    line=""; for(i=2;i<=NF;i++){gsub(/[^0-9a-f]/,"",$i); line=line substr($i,1,2) ":" substr($i,3,2) ":"}
-    print tolower(line)
-  }' |
-  while read -r data; do
-    data=${data%:}
-    len=$(echo "$data" | awk -F: '{print NF}')
-    if [[ "$data" == "$PATTERN_ON" ]]; then led_on
-    elif [[ "$data" == "$PATTERN_OFF" ]]; then led_off
-    elif [[ "$len" -eq "$LEN_ON" ]]; then led_on
-    elif [[ "$len" -eq "$LEN_OFF" ]]; then led_off
-    else echo "PING received ($len bytes)"; fi
-  done
-fi
+# Start Tshark capture
+sudo tshark -i any -l -Y "icmp.type==8 && ip.dst==$IP" -T fields -e data.data 2>/dev/null |
+while read -r data; do
+  data=$(echo "$data" | tr 'A-Z' 'a-z')
+  [[ -z "$data" ]] && continue
+
+  if [[ "$data" == "$PATTERN_ON" ]]; then
+    led_on
+  elif [[ "$data" == "$PATTERN_OFF" ]]; then
+    led_off
+  else
+    echo "Ping received: $data"
+  fi
+done
