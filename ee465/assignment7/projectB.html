@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Raspberry Pi Project B Dashboard</title>
+</head>
+<body>
+  <h1>Raspberry Pi Project B Dashboard</h1>
+  <p>Temperature, CPU usage, computed POWER_in_W, and average temperature gauge.</p>
+
+  <table border="1" width="100%">
+    <tr>
+      <th>Temperature vs Time</th>
+      <th>CPU Usage vs Time</th>
+    </tr>
+    <tr>
+      <td>
+        <!-- ThingSpeak temperature chart iframe -->
+        <!-- Replace the line below with your real TEMP iframe -->
+        <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/3185083/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Temperature&type=line"></iframe>
+      </td>
+      <td>
+        <!-- ThingSpeak CPU usage chart iframe -->
+        <!-- Replace the line below with your real CPU iframe -->
+        <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/3185083/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=CPU+%25&type=line"></iframe>
+      </td>
+    </tr>
+    <tr>
+      <th>POWER_in_W (MATLAB Visualization)</th>
+      <th>Average Temperature Gauge</th>
+    </tr>
+    <tr>
+      <td>
+        <!-- MATLAB Visualization iframe -->
+        <!-- Replace the line below with your real MATLAB iframe -->
+        <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/apps/matlab_visualizations/648221"></iframe>
+      </td>
+      <td>
+        <!-- Average temperature gauge iframe -->
+        <!-- Replace the line below with your real GAUGE iframe -->
+        <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/3185083/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=CPU+%25&type=line"></iframe>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
