@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>RPI ThingSpeak Dashboard</title>
+</head>
+<body>
+  <h1>Welcome to My RPi ThingSpeak Dashboard</h1>
+  <p>Live data from my Raspberry Pi 4.</p>
+
+  <table border="1" width="100%">
+    <tr>
+      <th>Field 1 Widget</th>
+      <th>Field 2 Widget</th>
+    </tr>
+    <tr>
+      <td>
+        <!-- Paste your first iframe (e.g., chart or gauge for Field 1) here -->
+        <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/3185083/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+      </td>
+      <td>
+        <!-- Paste your second iframe (e.g., chart for Field 2) here -->
+        <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/3185083/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
