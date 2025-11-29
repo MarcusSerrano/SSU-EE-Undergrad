@@ -1,29 +1,41 @@
 #!/usr/bin/env python3
-
+import time
 import requests
-from time import sleep
+import RPi.GPIO as GPIO
 
-# Replace these with YOUR actual keys
-CHANNEL_WRITE_API_KEY = "YOUR_CHANNEL_WRITE_API_KEY"   # from your channel page
-TALKBACK_KEY = "YOUR_TALKBACK_API_KEY"                 # from the TalkBack page
+# === CONFIGURATION ===
+LED_PIN = 18  # BCM pin number
+CHANNEL_WRITE_API_KEY = "YOUR_CHANNEL_WRITE_API_KEY"  # from your ThingSpeak channel
+TALKBACK_KEY = "YOUR_TALKBACK_API_KEY"                # from your TalkBack
 
-while True:
-    # This URL returns the next command (and removes it from the queue)
-    baseurl = (
-        "https://api.thingspeak.com/update?"
-        f"api_key={CHANNEL_WRITE_API_KEY}&talkback_key={TALKBACK_KEY}"
-    )
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(LED_PIN, GPIO.OUT, initial=GPIO.LOW)
 
-    response = requests.get(baseurl)
-    command = response.text.strip()
+try:
+    while True:
+        # This URL executes and pops the next command from the TalkBack queue
+        url = (
+            f"https://api.thingspeak.com/update?"
+            f"api_key={CHANNEL_WRITE_API_KEY}&talkback_key={TALKBACK_KEY}"
+        )
 
-    if command == 'OFF':
-        print('LED1 OFF')
-        # TODO: turn your GPIO pin OFF here
-    elif command == 'ON':
-        print('LED1 ON')
-        # TODO: turn your GPIO pin ON here
-    else:
-        print('No valid command (got:', command, ')')
+        response = requests.get(url)
+        command = response.text.strip()
+        print("Raw response:", repr(command))
 
-    sleep(30)   # check every 30 seconds
+        if command == "ON":
+            GPIO.output(LED_PIN, GPIO.HIGH)
+            print("LED1 ON")
+        elif command == "OFF":
+            GPIO.output(LED_PIN, GPIO.LOW)
+            print("LED1 OFF")
+        else:
+            print("No valid command (queue empty or something else).")
+
+        time.sleep(10)  # check every 10 seconds; lab example uses 30 s
+
+except KeyboardInterrupt:
+    print("Exiting...")
+
+finally:
+    GPIO.cleanup()
