@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>RPi ThingSpeak Control & Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--
+    EE465 Project C – Single-page control + dashboard
+
+    BEFORE USING, EDIT THESE:
+
+    1) Replace TALKBACK_ID_HERE with your TalkBack ID
+    2) Replace TALKBACK_API_KEY_HERE with your TalkBack API key
+    3) For each iframe:
+       - On ThingSpeak, open the widget (Field 1 plot, Field 2 plot, MATLAB vis, Gauge)
+       - Click Share → Embed
+       - Copy JUST the URL from src="...".
+       - Paste it into the corresponding src="" below.
+  -->
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: #f5f5f7;
+      color: #222;
+    }
+    header {
+      background: #111827;
+      color: #f9fafb;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.6rem;
+    }
+    header p {
+      margin: 0.25rem 0 0;
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+    main {
+      padding: 1rem 2rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    section {
+      margin-bottom: 2rem;
+    }
+    h2 {
+      margin-top: 0;
+      font-size: 1.3rem;
+    }
+    .control-panel {
+      background: #ffffff;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      margin-bottom: 1.5rem;
+    }
+    .control-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 0.6rem 1.3rem;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: transform 0.05s ease, box-shadow 0.1s ease, background 0.2s ease;
+    }
+    button:active {
+      transform: translateY(1px);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25) inset;
+    }
+    .btn-on {
+      background: #16a34a;
+      color: #f9fafb;
+    }
+    .btn-on:hover {
+      background: #15803d;
+    }
+    .btn-off {
+      background: #ef4444;
+      color: #f9fafb;
+    }
+    .btn-off:hover {
+      background: #dc2626;
+    }
+    .btn-refresh {
+      background: #374151;
+      color: #f9fafb;
+    }
+    .btn-refresh:hover {
+      background: #111827;
+    }
+    .widgets-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .widget-card {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      flex: 1 1 320px;
+      min-width: 280px;
+    }
+    .widget-card h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.05rem;
+    }
+    iframe {
+      width: 100%;
+      max-width: 100%;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      background: #fff;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem 0 1.5rem;
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>RPi ThingSpeak Control & Sensor Dashboard</h1>
+    <p>EE465 Project C – LED control via TalkBack + live plots from ThingSpeak</p>
+  </header>
+
+  <main>
+    <!-- Hidden iframe so POST responses don't navigate away -->
+    <iframe name="hidden_talkback_target" style="display: none;"></iframe>
+
+    <!-- CONTROL SECTION -->
+    <section id="control">
+      <div class="control-panel">
+        <h2>Control the Raspberry Pi LED</h2>
+        <p>
+          These buttons send <strong>ON/OFF</strong> commands into your ThingSpeak TalkBack queue.
+          Your Python script on the Pi polls TalkBack and switches the GPIO/LED.
+        </p>
+
+        <div class="control-buttons">
+          <!-- ON button -->
+          <form
+            action="https://api.thingspeak.com/talkbacks/TALKBACK_ID_HERE/commands.json?api_key=TALKBACK_API_KEY_HERE&command_string=ON"
+            method="post"
+            target="hidden_talkback_target"
+          >
+            <button type="submit" class="btn-on">LED ON</button>
+          </form>
+
+          <!-- OFF button -->
+          <form
+            action="https://api.thingspeak.com/talkbacks/TALKBACK_ID_HERE/commands.json?api_key=TALKBACK_API_KEY_HERE&command_string=OFF"
+            method="post"
+            target="hidden_talkback_target"
+          >
+            <button type="submit" class="btn-off">LED OFF</button>
+          </form>
+
+          <!-- Optional: view current TalkBack command queue in a new tab -->
+          <form
+            action="https://api.thingspeak.com/talkbacks/TALKBACK_ID_HERE/commands.json?api_key=TALKBACK_API_KEY_HERE"
+            method="get"
+            target="_blank"
+          >
+            <button type="submit" class="btn-refresh">View Command Queue</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- WIDGETS SECTION -->
+    <section id="widgets">
+      <h2>Sensor Data & Visualizations</h2>
+      <div class="widgets-grid">
+        <!-- Temperature Plot -->
+        <div class="widget-card">
+          <h3>Temperature vs Time</h3>
+          <p style="font-size: 0.85rem; color: #6b7280; margin-top: 0; margin-bottom: 0.5rem;">
+            Field 1 from your ThingSpeak channel.
+          </p>
+          <!--
+            Replace the src below with the src="..." URL from your ThingSpeak
+            "Field 1" plot embed code.
+          -->
+          <iframe
+            height="260"
+            src="PASTE_TEMP_PLOT_IFRAME_SRC_URL_HERE"
+          ></iframe>
+        </div>
+
+        <!-- CPU Usage Plot -->
+        <div class="widget-card">
+          <h3>CPU Usage vs Time</h3>
+          <p style="font-size: 0.85rem; color: #6b7280; margin-top: 0; margin-bottom: 0.5rem;">
+            Field 2 from your ThingSpeak channel.
+          </p>
+          <!-- Replace src with your Field 2 plot embed src URL -->
+          <iframe
+            height="260"
+            src="PASTE_CPU_PLOT_IFRAME_SRC_URL_HERE"
+          ></iframe>
+        </div>
+
+        <!-- MATLAB Visualization (Power) -->
+        <div class="widget-card">
+          <h3>POWER_in_W (MATLAB Visualization)</h3>
+          <p style="font-size: 0.85rem; color: #6b7280; margin-top: 0; margin-bottom: 0.5rem;">
+            POWER_in_W = (0.23 * 100 * CPU% + Temp_in_C * 0.32)
+          </p>
+          <!-- Replace src with your MATLAB Visualization embed src URL -->
+          <iframe
+            height="260"
+            src="PASTE_MATLAB_VIS_IFRAME_SRC_URL_HERE"
+          ></iframe>
+        </div>
+
+        <!-- Gauge (Average Temperature) -->
+        <div class="widget-card">
+          <h3>Average Temperature Gauge</h3>
+          <p style="font-size: 0.85rem; color: #6b7280; margin-top: 0; margin-bottom: 0.5rem;">
+            ThingSpeak gauge widget showing average temperature.
+          </p>
+          <!-- Replace src with your Gauge embed src URL -->
+          <iframe
+            height="260"
+            src="PASTE_GAUGE_IFRAME_SRC_URL_HERE"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    RPi & ThingSpeak Dashboard &mdash; served by Apache
+  </footer>
+</body>
+</html>
