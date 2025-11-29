@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Control Your Pi via ThingSpeak TalkBack</h2>
+
+<!-- 1) ADD A COMMAND TO THE QUEUE (ON/OFF) -->
+<p><strong>Send a Command</strong></p>
+<form action="https://api.thingspeak.com/talkbacks/YOUR_TALKBACK_ID/commands.json" 
+      method="post" target="_blank">
+  <input type="text" name="api_key" placeholder="TalkBack API Key" value="YOUR_TALKBACK_API_KEY">
+  <label> TalkBack API Key</label><br><br>
+  
+  <input type="text" name="command_string" placeholder="ON or OFF">
+  <label> Command</label><br><br>
+  
+  <input type="submit" value="Send Command">
+</form>
+
+<hr>
+
+<!-- 2) SEE WHAT IS IN THE QUEUE -->
+<p><strong>Check Queue</strong></p>
+<form action="https://api.thingspeak.com/talkbacks/YOUR_TALKBACK_ID/commands.json" 
+      method="get" target="_blank">
+  <input type="text" name="api_key" value="YOUR_TALKBACK_API_KEY">
+  <label> TalkBack API Key</label><br><br>
+  <input type="submit" value="Show Queue">
+</form>
+
+<hr>
+
+<!-- 3) EXECUTE/REMOVE NEXT COMMAND -->
+<p><strong>Execute Next Command from Queue</strong></p>
+<form action="https://api.thingspeak.com/update" method="get" target="_blank">
+  <input type="text" name="api_key" value="YOUR_CHANNEL_WRITE_API_KEY">
+  <label> Channel Write API Key</label><br><br>
+  
+  <input type="text" name="talkback_key" value="YOUR_TALKBACK_API_KEY">
+  <label> TalkBack Key</label><br><br>
+  
+  <input type="submit" value="Execute Next Command">
+</form>
+
+</body>
+</html>
