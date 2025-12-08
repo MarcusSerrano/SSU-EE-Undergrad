@@ -8,8 +8,8 @@
 // ---------- USER SETTINGS ----------
 
 // WiFi credentials
-const char* WIFI_SSID     = "DESKTOP-38G0AHI 4388";
-const char* WIFI_PASSWORD = "/13x12L3";
+const char* WIFI_SSID     = "";
+const char* WIFI_PASSWORD = "";
 
 // Your PHP endpoint (HTTPS)
 const char* SERVER_URL = "https://marcusinternetofthings.com/assignment8/insert_sensor_data.php";
@@ -212,3 +212,4 @@ void loop() {
   // Small delay to reduce CPU usage
   delay(10);
 }
+
