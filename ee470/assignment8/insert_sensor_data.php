@@ -3,10 +3,10 @@
 header('Content-Type: application/json');
 
 // 1. Database credentials
-$DB_HOST = '156.67.74.201';
-$DB_NAME = 'u335487609_assignment8';
-$DB_USER = 'u335487609_assignment8usr';
-$DB_PASS = 'Mi5//ZLN>M=';
+$DB_HOST = '';
+$DB_NAME = '';
+$DB_USER = '';
+$DB_PASS = '';
 
 // 2. Collect parameters (accept a couple of common name variants)
 $nodeId      = $_GET['nodeId']      ?? null;
@@ -115,3 +115,4 @@ try {
         ]);
     }
 }
+
