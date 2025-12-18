@@ -1,0 +1,178 @@
+/*-----------------------------
+ Title: Calculator
+-----------------------------
+ Purpose: This program takes two inputs and performs arithmetic on inputs.
+ Dependencies: AssemblyConfig.inc
+ Compiler: MPLAB X IDE v6.20
+ Author: Marcus Serrano 
+ OUTPUTS: Display_Result_Reg
+ INPUTS: Keypad inputs composed of Xinput_reg and Yinput_reg with data between 1 and 9.
+ Versions:
+    V1.0: First written
+-----------------------------
+ */
+
+#include <xc.h> // must have this
+#include "C:\Program Files\Microchip\xc8\v2.46\pic\include\proc\pic18f47k42.h"
+#include <stdlib.h>
+
+#define _XTAL_FREQ 4000000                 // Fosc  frequency for _delay()  library
+#define FCY    _XTAL_FREQ/4
+
+//void main(void) {
+//       // Set PORTA pin 0 as input and PORTD pin 0 as output
+//    TRISAbits.TRISA0 = 1; // Set PORTA pin 0 as input
+//    WPUAbits.WPUA0 = 1;   // Enable weak pull-up on PORTA pin 0
+//    ANSELAbits.ANSELA0 = 0;     // Set PORTA pin 0 as digital
+//    TRISDbits.TRISD0 = 0; // Set PORTD pin 0 as output
+//
+//    // Main loop
+//    while (1) {
+//        // Read the state of PORTA pin 0 and output it to PORTD pin 0
+//        PORTDbits.RD0 = ~PORTAbits.RA0;
+//    }
+//
+//}
+
+/*
+ *Keypad decoding table:
+ *+---+---+---+---+---+
+ *| X | 1 | 2 | 3 | 4 |
+ *+---+---+---+---+---+
+ *| 1 | 1 | 2 | 3 | A |
+ *| 2 | 4 | 5 | 6 | B |
+ *| 3 | 7 | 8 | 9 | C |
+ *| 4 | * | 0 | # | D |
+ *+---+---+---+---+---+
+ 
++-----+-----+-----+-----+-----+
+|  X  | RA3 | RA2 | RA1 | RA0 |
++-----+-----+-----+-----+-----+
+| RA7 | 1   |   2 | 3   | A   |
+| RA6 | 4   |   5 | 6   | B   |
+| RA5 | 7   |   8 | 9   | C   |
+| RA4 | *   |   0 | #   | D   |
++-----+-----+-----+-----+-----+
+
+
+
+ */
+
+//Name rows and columns with MACROS
+#define r1 PORTAbits.RA7
+#define r2 PORTAbits.RA6
+#define r3 PORTAbits.RA5
+#define r4 PORTAbits.RA4
+#define c1 PORTAbits.RA3
+#define c2 PORTAbits.RA2
+#define c3 PORTAbits.RA1
+#define c4 PORTAbits.RA0
+
+//row scanning technique
+void keypad() {
+    //checking all rows in column 1.
+    c1 = 1;
+    c2 = 0;
+    c3 = 0;
+    c4 = 0;
+    if (r1 == 1) {
+        PORTD = 0b00000001;
+        while (r1 == 1);
+    }   
+    if (r2 == 1) {
+        PORTD = 0b00000100;
+        while (r2 == 1);
+    }
+    if (r3 == 1) {
+        PORTD = 0b00000111;
+        while (r3 == 1);
+    }
+    if (r4 == 1) {
+        PORTD = 0b11111111; //This is the * key
+        while (r4 == 1);
+    }
+    
+    //checking all rows in column 2.
+    c1 = 0;
+    c2 = 1;
+    c3 = 0;
+    c4 = 0;
+    if (r1 == 1) {
+        PORTD = 0b00000010;
+        while (r1 == 1);
+    }   
+    if (r2 == 1) {
+        PORTD = 0b00000101;
+        while (r2 == 1);
+    }
+    if (r3 == 1) {
+        PORTD = 0b00001000;
+        while (r3 == 1);
+    }
+    if (r4 == 1) {
+        PORTD = 0b00000000; //This is the 0 key
+        while (r4 == 1);
+    }
+    
+    //checking all rows in column 3.
+    c1 = 0;
+    c2 = 0;
+    c3 = 1;
+    c4 = 0;
+    if (r1 == 1) {
+        PORTD = 0b00000011;
+        while (r1 == 1);
+    }   
+    if (r2 == 1) {
+        PORTD = 0b00000110;
+        while (r2 == 1);
+    }
+    if (r3 == 1) {
+        PORTD = 0b00001001;
+        while (r3 == 1);
+    }
+    if (r4 == 1) {
+        PORTD = 0b11111111; //This is the # key
+        while (r4 == 1);
+    }
+    
+    //checking all rows in column 4.
+    c1 = 0;
+    c2 = 0;
+    c3 = 0;
+    c4 = 1;
+    if (r1 == 1) {
+        PORTD = 0b00000011;//A
+        while (r1 == 1);
+    }   
+    if (r2 == 1) {
+        PORTD = 0b00000110;//B
+        while (r2 == 1);
+    }
+    if (r3 == 1) {
+        PORTD = 0b00001001;//C
+        while (r3 == 1);
+    }
+    if (r4 == 1) {
+        PORTD = 0b11111111; //D
+        while (r4 == 1);
+    }
+}
+
+void main(void) {
+    // Set PORTA as input and PORTD as output
+    TRISA = 0b11110000; // Set PORTA as mixed in/out
+    
+    ANSELA = 0; // Set PORTA digital
+    TRISD = 0; // Set PORTD as output
+    
+
+    // Main loop
+    while (1) {
+
+        keypad();
+        PORTD = 0;
+        __delay_ms(10);
+    }
+}
+

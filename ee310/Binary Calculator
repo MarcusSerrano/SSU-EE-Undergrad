@@ -1,0 +1,336 @@
+/*-----------------------------
+ Title: Calculator
+-----------------------------
+ Purpose: This program takes two inputs and performs arithmetic on inputs.
+ Dependencies: AssemblyConfig.inc
+ Compiler: MPLAB X IDE v6.20
+ Author: Marcus Serrano
+ OUTPUTS: Display_Result_Reg
+ INPUTS: Keypad inputs Xinput_reg, Yinput_reg, Operation_REG, pound.
+ Versions:
+    V1.0: First written 4/5/2024
+ * V1.1: Finished keypad implementation. 4/8/2024
+ * V1.2: Finished logic implementation. 4/8/2024
+ * V2.0: Completed Input and Output implementation. 4/9/2024
+-----------------------------
+
+ *Keypad decoding table:
+ *+---+---+---+---+---+
+ *| X | 1 | 2 | 3 | 4 |
+ *+---+---+---+---+---+
+ *| 1 | 1 | 2 | 3 | A |
+ *| 2 | 4 | 5 | 6 | B |
+ *| 3 | 7 | 8 | 9 | C |
+ *| 4 | * | 0 | # | D |
+ *+---+---+---+---+---+
+
++-----+-----+-----+-----+-----+
+|  X  | RA3 | RA2 | RA1 | RA0 |
++-----+-----+-----+-----+-----+
+| RB4 | 1   |   2 | 3   | A   |
+| RA6 | 4   |   5 | 6   | B   |
+| RA5 | 7   |   8 | 9   | C   |
+| RA4 | *   |   0 | #   | D   |
++-----+-----+-----+-----+-----+
+ */
+
+#include <xc.h> // must have this
+#include "C:\Program Files\Microchip\xc8\v2.46\pic\include\proc\pic18f47k42.h"
+#include <stdlib.h>
+
+#pragma config WDTE = OFF // Disable Watchdog Timer
+
+#define _XTAL_FREQ 4000000                 // Fosc  frequency for _delay()  library
+#define FCY    _XTAL_FREQ/4
+
+//Name rows and columns with MACROS
+#define r1 PORTBbits.RB4
+#define r2 PORTAbits.RA6
+#define r3 PORTAbits.RA5
+#define r4 PORTAbits.RA4
+#define c1 PORTAbits.RA3
+#define c2 PORTAbits.RA2
+#define c3 PORTAbits.RA1
+#define c4 PORTAbits.RA0
+
+//Define global variables
+int X_Input_REG = 0;
+int Y_Input_REG = 0;
+int Display_Result_REG = 0;
+int Operation_REG = 0;
+int pound = 0;
+
+//row scanning technique
+
+void keypadX() {
+    //checking all rows in column 1.
+    c1 = 1;
+    c2 = 0;
+    c3 = 0;
+    c4 = 0;
+    if (r1 == 1) {
+        X_Input_REG = 0b00000001; // 1
+        while (r1 == 1);
+    }
+    if (r2 == 1) {
+        X_Input_REG = 0b00000100; // 4
+        while (r2 == 1);
+    }
+    if (r3 == 1) {
+        X_Input_REG = 0b00000111; // 7
+        while (r3 == 1);
+    }
+    //    if (r4 == 1) {
+    //        X_Input_REG = 0b11111111; //This is the * key
+    //        while (r4 == 1);
+    //    }
+
+    //checking all rows in column 2.
+    c1 = 0;
+    c2 = 1;
+    c3 = 0;
+    c4 = 0;
+    if (r1 == 1) {
+        X_Input_REG = 0b00000010; // 2
+        while (r1 == 1);
+    }
+    if (r2 == 1) {
+        X_Input_REG = 0b00000101; // 5
+        while (r2 == 1);
+    }
+    if (r3 == 1) {
+        X_Input_REG = 0b00001000; // 8
+        while (r3 == 1);
+    }
+    if (r4 == 1) {
+        X_Input_REG = 0b00000000; //This is the 0 key
+        while (r4 == 1);
+    }
+
+    //checking all rows in column 3.
+    c1 = 0;
+    c2 = 0;
+    c3 = 1;
+    c4 = 0;
+    if (r1 == 1) {
+        X_Input_REG = 0b00000011; //3
+        while (r1 == 1);
+    }
+    if (r2 == 1) {
+        X_Input_REG = 0b00000110; //6
+        while (r2 == 1);
+    }
+    if (r3 == 1) {
+        X_Input_REG = 0b00001001; //9
+        while (r3 == 1);
+    }
+    //    if (r4 == 1) {
+    //        X_Input_REG = 0b11111111; //This is the # key
+    //        while (r4 == 1);
+    //    }
+}
+
+//row scanning technique
+
+void keypadY() {
+    //checking all rows in column 1.
+    c1 = 1;
+    c2 = 0;
+    c3 = 0;
+    c4 = 0;
+    if (r1 == 1) {
+        Y_Input_REG = 0b00000001; // 1
+        while (r1 == 1);
+    }
+    if (r2 == 1) {
+        Y_Input_REG = 0b00000100; // 4
+        while (r2 == 1);
+    }
+    if (r3 == 1) {
+        Y_Input_REG = 0b00000111; // 7
+        while (r3 == 1);
+    }
+    //    if (r4 == 1) {
+    //        Y_Input_REG = 0b11111111; //This is the * key
+    //        while (r4 == 1);
+    //    }
+
+    //checking all rows in column 2.
+    c1 = 0;
+    c2 = 1;
+    c3 = 0;
+    c4 = 0;
+    if (r1 == 1) {
+        Y_Input_REG = 0b00000010; // 2
+        while (r1 == 1);
+    }
+    if (r2 == 1) {
+        Y_Input_REG = 0b00000101; // 5
+        while (r2 == 1);
+    }
+    if (r3 == 1) {
+        Y_Input_REG = 0b00001000; // 8
+        while (r3 == 1);
+    }
+    if (r4 == 1) {
+        Y_Input_REG = 0b00000000; //This is the 0 key
+        while (r4 == 1);
+    }
+
+    //checking all rows in column 3.
+    c1 = 0;
+    c2 = 0;
+    c3 = 1;
+    c4 = 0;
+    if (r1 == 1) {
+        Y_Input_REG = 0b00000011; //3
+        while (r1 == 1);
+    }
+    if (r2 == 1) {
+        Y_Input_REG = 0b00000110; //6
+        while (r2 == 1);
+    }
+    if (r3 == 1) {
+        Y_Input_REG = 0b00001001; //9
+        while (r3 == 1);
+    }
+    //    if (r4 == 1) {
+    //        Y_Input_REG = 0b11111111; //This is the # key
+    //        while (r4 == 1);
+    //    }
+}
+
+//row scanning technique
+
+void keypadOp() {
+    //checking all rows in column 4.
+    c1 = 0;
+    c2 = 0;
+    c3 = 0;
+    c4 = 1;
+    if (r1 == 1) {
+        Operation_REG = 1; //A
+        while (r1 == 1);
+    }
+    if (r2 == 1) {
+        Operation_REG = 2; //B
+        while (r2 == 1);
+    }
+    if (r3 == 1) {
+        Operation_REG = 3; //C
+        while (r3 == 1);
+    }
+    if (r4 == 1) {
+        Operation_REG = 4; //D
+        while (r4 == 1);
+    }
+}
+
+void keypadpound() {
+    c1 = 0;
+    c2 = 0;
+    c3 = 1;
+    c4 = 0;
+
+    if (r4 == 1) {
+        pound = 1;
+        while (r4 == 1);
+    }
+}
+
+void sum() {
+    Display_Result_REG = X_Input_REG + Y_Input_REG;
+}
+
+void difference() {
+    Display_Result_REG = X_Input_REG - Y_Input_REG;
+
+    // 2's compliment of a negative number.
+    if (Display_Result_REG < 0) {
+        ~Display_Result_REG + 1;
+
+    }
+}
+
+void product() {
+    Display_Result_REG = X_Input_REG * Y_Input_REG;
+}
+
+void quotient() {
+    Display_Result_REG = X_Input_REG / Y_Input_REG;
+}
+
+void main() {
+    // Set PORTA as input and PORTD as output
+    ANSELA = 0; // Set PORTA digital
+    TRISA = 0b11110000; // Set PORTA as mixed in/out
+    ANSELD = 0; // Set PORTD digital
+    TRISD = 0; // Set PORTD as output
+    ANSELB = 0; // Set PORTB digital
+    TRISB = 0b11011111; // Set PORTB as mixed in/out
+    ANSELE = 0; // Set PORTE digital
+    TRISE = 0b11111101; // Set PORTB as mixed in/out
+
+    PORTB = 0;
+    PORTD = 0;
+    PORTE = 0;
+    // Main loop
+
+    while (1) {
+
+        // Initial state of calculator.
+        X_Input_REG = 0;
+        Y_Input_REG = 0;
+        Operation_REG = 0;
+        pound = 0;
+        PORTBbits.RB5 = 0;
+        PORTEbits.RE1 = 0;
+
+
+
+        // Receive X input
+        while (X_Input_REG == 0) {
+            keypadX();
+        }
+        PORTD = X_Input_REG;
+        PORTBbits.RB5 = 1;
+        PORTEbits.RE1 = 0;
+
+        // Receive operation input
+        while (Operation_REG == 0) {
+            keypadOp();
+        }
+
+        // Receive Y input
+        while (Y_Input_REG == 0) {
+            keypadY();
+        }
+        PORTD = Y_Input_REG;
+        PORTBbits.RB5 = 0;
+        PORTEbits.RE1 = 1;
+
+        // Wait for # before executing operations.
+        while (pound == 0) {
+            keypadpound();
+        }
+
+        //Perform Arithmetic based on Operation_REG
+        if (Operation_REG == 1) {
+            sum();
+        }
+        if (Operation_REG == 2) {
+            difference();
+        }
+        if (Operation_REG == 3) {
+            product();
+        }
+        if (Operation_REG == 4) {
+            quotient();
+        }
+
+        // Display Result and reset
+        PORTD = Display_Result_REG;
+
+    }
+}
+
