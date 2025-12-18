@@ -1,0 +1,149 @@
+#******************************************************************************
+# Name: Marcus Serrano
+# Date: 8/7/2024
+# Revision: ???
+# Added Datetime 7/31/2024
+# Train and test model 8/1/2024
+# Graphing 8/3/2024
+#
+# Project Name: Gen Forecasting with Random Forest Regressor
+#
+# This script uses a Random Forest Regressor to forecast the variable Gen from historical data.
+#
+# Machine Learning Model:
+# - Random Forest Regressor: This ensemble learning method is chosen for its ability to handle complex, non-linear relationships between variables, and its robustness to overfitting, particularly with high-dimensional data.
+#
+# Why Random Forest?
+# - Captures non-linear relationships.
+# - Robustness to overfitting.
+# - Handles high-dimensional data.
+#
+# Adjustments for this use case:
+# - Training and Testing Split: The model is trained on data from January 2014 to December 2020 and tested on data from January 2021 to December 2022.
+# - Feature Scaling: The features are normalized using StandardScaler to ensure they are on a comparable scale, which is crucial for the performance of many machine learning algorithms.
+# - Non-negative Predictions: Predictions are adjusted to ensure Gen values are non-negative.
+# - Evaluation Metrics: Mean Squared Error (MSE), Root Mean Squared Error (RMSE), Mean Absolute Error (MAE), and R-squared (R²) are calculated to evaluate the model's performance.
+# - Visualization: The results are plotted to compare historical data and predicted values, with a dashed grey line indicating the train-test split.
+#
+
+# Import necessary libraries
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.preprocessing import StandardScaler
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+import seaborn as sns
+
+# Load the dataset
+data = pd.read_csv('Data Set v2.csv')
+
+# Ensure date and time are incorporated properly
+data['Datetime'] = pd.to_datetime(data[['Year', 'Month', 'Day', 'Hour']])
+
+# Split the data into training and testing sets based on the year
+# Training data: up to the end of 2020
+# Testing data: from 2021 to 2022
+# 78% Train 22% test split
+train_data = data[data['Datetime'] < '2021-01-01']
+test_data = data[(data['Datetime'] >= '2021-01-01') & (data['Datetime'] <= '2023-12-31')]
+
+# Drop unnecessary columns
+train_data = train_data.drop(columns=['Year', 'Month', 'Day', 'Hour'])
+test_data = test_data.drop(columns=['Year', 'Month', 'Day', 'Hour'])
+
+# Feature and target split
+X_train = train_data.drop(columns=['Gen', 'Datetime'])
+y_train = train_data['Gen']
+X_test = test_data.drop(columns=['Gen', 'Datetime'])
+y_test = test_data['Gen']
+
+# Normalize the data
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+# Define and train the model
+model = RandomForestRegressor(n_estimators=100, random_state=42)
+model.fit(X_train_scaled, y_train)
+
+# Make predictions
+y_pred = model.predict(X_test_scaled)
+
+# Ensure predictions are non-negative
+y_pred = np.maximum(y_pred, 0)
+
+# Calculate evaluation metrics
+mse = mean_squared_error(y_test, y_pred)
+rmse = np.sqrt(mse)
+mae = mean_absolute_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
+
+# Create a dataframe for the results
+results = pd.DataFrame({
+    'Datetime': test_data['Datetime'],
+    'Actual': y_test,
+    'Predicted': y_pred
+})
+
+# Combine with training data for complete plot
+train_data['Predicted'] = np.nan
+results_combined = pd.concat([train_data, results], ignore_index=True)
+
+# Resample to monthly average
+results_combined.set_index('Datetime', inplace=True)
+monthly_results = results_combined.resample('M').mean()
+
+# Set plot font size
+plt.rcParams.update({'font.size': 16})
+
+# Plot the results
+fig, ax = plt.subplots(figsize=(12, 8))
+sns.lineplot(data=monthly_results, x=monthly_results.index, y='Gen', label='Historical', color='black', ax=ax)
+sns.lineplot(data=monthly_results, x=monthly_results.index, y='Predicted', label='Predicted', color=(177/255, 2/255, 2/255), ax=ax)
+
+# Add dividing line
+ax.axvline(x=pd.Timestamp('2021-01-01'), linestyle='--', color='grey', label='Train-Test Split')
+
+ax.set_xlabel('Time (UTC)')
+ax.set_ylabel('Average Monthly Gen (MWh)')
+ax.set_title('Historical and Predicted Average Monthly Generation (MWh)')
+ax.legend()
+
+# Display evaluation metrics directly below the plot
+fig.text(0.15, 0.0, f'Mean Squared Error (MSE): {mse:.4f}', ha="left", fontsize=16)
+fig.text(0.15, -0.03, f'Root Mean Squared Error (RMSE): {rmse:.4f}', ha="left", fontsize=16)
+fig.text(0.15, -0.06, f'Mean Absolute Error (MAE): {mae:.4f}', ha="left", fontsize=16)
+fig.text(0.15, -0.09, f'R-squared (R²): {r2:.4f}', ha="left", fontsize=16)
+
+# Adjust layout to make room for the metrics
+plt.subplots_adjust(bottom=0.1)
+plt.show()
+
+# Plot the prediction for one day (6/2/2022), hour by hour
+one_day_results = results[results['Datetime'].dt.date == pd.to_datetime('2022-06-02').date()]
+
+# Calculate evaluation metrics for one day
+mse_day = mean_squared_error(one_day_results['Actual'], one_day_results['Predicted'])
+rmse_day = np.sqrt(mse_day)
+mae_day = mean_absolute_error(one_day_results['Actual'], one_day_results['Predicted'])
+r2_day = r2_score(one_day_results['Actual'], one_day_results['Predicted'])
+
+fig, ax = plt.subplots(figsize=(12, 8))
+ax.plot(one_day_results['Datetime'].dt.hour, one_day_results['Actual'], marker='o', linestyle='-', label='Actual', color='black')
+ax.plot(one_day_results['Datetime'].dt.hour, one_day_results['Predicted'], marker='o', linestyle='-', label='Predicted', color=(177/255, 2/255, 2/255))
+ax.set_xlabel('Time (UTC)')
+ax.set_ylabel('Gen (MWh)')
+ax.set_title('Hourly Generation Prediction for 6/2/2022')
+ax.legend()
+ax.grid(True)
+
+# Display evaluation metrics directly below the plot
+fig.text(0.15, 0.0, f'Mean Squared Error (MSE): {mse_day:.4f}', ha="left", fontsize=16)
+fig.text(0.15, -0.03, f'Root Mean Squared Error (RMSE): {rmse_day:.4f}', ha="left", fontsize=16)
+fig.text(0.15, -0.06, f'Mean Absolute Error (MAE): {mae_day:.4f}', ha="left", fontsize=16)
+fig.text(0.15, -0.09, f'R-squared (R²): {r2_day:.4f}', ha="left", fontsize=16)
+
+# Adjust layout to make room for the metrics
+plt.subplots_adjust(bottom=0.1)
+plt.show()

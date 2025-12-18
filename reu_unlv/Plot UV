@@ -1,0 +1,50 @@
+# Import necessary libraries
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.metrics import r2_score
+
+# Load the dataset
+data = pd.read_csv('Data Set v2.csv')
+
+# Ensure date and time are incorporated properly
+data['Datetime'] = pd.to_datetime(data[['Year', 'Month', 'Day', 'Hour']])
+
+# Scatter plot of Global Horizontal UV Irradiance (295-385nm) vs Gen
+plt.figure(figsize=(12, 8))
+
+# Scatter plot
+plt.scatter(data['Global Horizontal UV Irradiance (295-385nm)'], data['Gen'], alpha=0.5, color=(177/255, 2/255, 2/255), label='Data')
+
+# Fit a polynomial trendline
+x = data['Global Horizontal UV Irradiance (295-385nm)']
+y = data['Gen']
+
+# Fit a polynomial of degree 2 (quadratic) for a non-linear trendline
+coefficients = np.polyfit(x, y, 2)
+polynomial = np.poly1d(coefficients)
+
+# Generate values for the trendline
+x_range = np.linspace(x.min(), x.max(), 100)
+y_range = polynomial(x_range)
+
+# Plot the trendline
+plt.plot(x_range, y_range, color='black', linestyle='--', label='Trendline (Quadratic)')
+
+# Calculate R² value
+y_pred = polynomial(x)
+r2 = r2_score(y, y_pred)
+
+# Add labels and title with font size 12
+plt.xlabel('Global Horizontal UV Irradiance (295-385nm) (W/m²)', fontsize=12)
+plt.ylabel('Gen (MWh)', fontsize=12)
+plt.title('Global Horizontal UV Irradiance (295-385nm) vs Generation', fontsize=12)
+plt.legend(fontsize=12)
+
+# Display R² value on the plot, moved to the bottom right
+plt.figtext(0.95, 0.05, f'R²: {r2:.4f}', ha='right', fontsize=12, color='black', bbox=dict(facecolor='white', alpha=0.8))
+
+plt.grid(True)
+plt.xticks(fontsize=12)
+plt.yticks(fontsize=12)
+plt.show()

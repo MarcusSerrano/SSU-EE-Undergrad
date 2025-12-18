@@ -1,0 +1,47 @@
+# Colab setup: Ensure to upload 'Data Set v2.csv' to your Colab session before running this code.
+
+# Import necessary libraries
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load the dataset
+data = pd.read_csv('Data Set v2.csv')
+
+# Ensure date and time are incorporated properly
+data['Datetime'] = pd.to_datetime(data[['Year', 'Month', 'Day', 'Hour']])
+
+# Resample the data to monthly average
+monthly_data = data.resample('M', on='Datetime').mean().reset_index()
+
+# Function to plot monthly averages for a given variable
+def plot_monthly_average(data, variable, ylabel):
+    plt.figure(figsize=(12, 8))
+    
+    # Set font size
+    plt.rc('font', size=12)
+    plt.rc('axes', titlesize=12)
+    plt.rc('axes', labelsize=12)
+    plt.rc('xtick', labelsize=12)
+    plt.rc('ytick', labelsize=12)
+    plt.rc('legend', fontsize=12)
+
+    # Pivot the data to have months as index and years as columns
+    pivot_table = data.pivot_table(index=data['Datetime'].dt.month, columns=data['Datetime'].dt.year, values=variable)
+
+    # Plot each year
+    for year in pivot_table.columns:
+        sns.lineplot(data=pivot_table[year], label=year)
+
+    plt.title(f'Monthly Average {variable}')
+    plt.xlabel('Month')
+    plt.ylabel(ylabel)
+    plt.legend(title='Year')
+    plt.xticks(ticks=range(1, 13), labels=['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])
+    plt.show()
+
+# Plot monthly averages for the specified variables
+plot_monthly_average(monthly_data, 'Gen', 'Average Gen (MWh)')
+plot_monthly_average(monthly_data, 'Solar Zenith Angle', 'Average Solar Zenith Angle (degrees)')
+plot_monthly_average(monthly_data, 'Temperature', 'Average Temperature (°C)')
+plot_monthly_average(monthly_data, 'DNI', 'Average DNI (W/m²)')
