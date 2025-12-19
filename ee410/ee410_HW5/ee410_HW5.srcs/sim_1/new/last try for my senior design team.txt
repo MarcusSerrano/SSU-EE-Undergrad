@@ -1,0 +1,145 @@
+Some direction for us moving forwards.
+
+A good goal for us is to have a working prototype to demonstrate by December 5.
+Our slideshow also needs to bo solid and fully finished by then as well, considering that this is a final.
+Our grades depend on eachother, but for now we should divide the responsibility so that we can each work in our own lane on the presentation.
+The project itself does warrant a degree of cooperation to get a working prototype complete.
+
+SLIDESHOW*****
+The following points are taken from the slideshow template. 
+All points must be on the slideshow.
+Overall Slideshow:
+Problem Statement 
+Value Proposition 
+Existing Solution 
+Proposed Solution
+Marketing Requirements
+Engineering Requirements
+System Overview
+Challenges and Risks
+Tests and Results
+Budget and Materials
+Schedule
+Design Matrix
+Gantt chart
+
+INDIVIDUAL SLIDES*****
+Below are all points that each of us individually are responsible for.
+If you do not complete these, the team will suffer.
+Of course, you can ask for help but if these are not complete, you will be soley responsible.
+Remember, our presentation is graded.
+These slides require conscious effort, and rehearsal. Take the feedback we've received.
+Individial slideshow:
+Design matrix for decisions made on your part.
+block diagrams
+wiring diagrams
+Marketing Requirements
+Engineering Requirements
+Tests and Results
+Budget and Materials
+Additionally, I feel that a writeup of who EXACTLY is responsible for which part of the slideshow, down to the sentence, is necessary.
+
+LECTURE ASSIGNMENTS*****
+Next, the assignments in 492.
+I have not done any all semester.
+If you have been completing them, I encourage you to share your work with the team to prevent the duplication of effort and to have a unified voice for Dr.Wu and Dr.Farahmand.
+I think that we should plan to do these during our scheduled meetings as well, OR we should divide the semester's work amongst ourselves and work in parallell.
+We should have a responsibility sheet written if we opt for the second option.
+
+INFORMATION SHARING*****
+I urge, URGE, all members to share code openly and freely on the team's Github.
+There will be no stealing of credit, as our roles are clearly defined to the faculty by this point.
+the audience during our final presentation will be able to figure out who's responsible for what, they're paying attention.
+We're not writing anything proprietary, and I'm confident a junior Engineer could complete any of our codes in a day with the help of chatGPT.
+remember, we're not hot stuff, our project is semi-novel, but again a company could complete this easily.
+By sharing information freely, the team can stay posted on updates.
+for example, my code has been available on github this entire time, this was done to provide everyone the ability to replicate my work and perform testing by themselves.
+if someone random on the internet wants to use it, that's fine, it's not like it was made by a master programmer.
+I also URGE everyone to use the shared google drive for files not suitable for github.
+again, witholding information only serves to hurt the team.
+
+INTERPERSONAL RELATIONSHIPS******
+I understand that there's conflict in this team.
+We don't have to be besties, but we do have to be professionals. 
+Don't allow ego to jeapoardize the hard work you've put in to get yourself this far in your degree.
+Once you walk across the stage, all this dissolves.
+7ish months, that's it.
+
+COMMUNICATION*****
+Slack, Email, Text, are all fair game. 
+when reasonable, update Farid.
+Discord channel has been dissolved since we never ended up needing it.
+
+ATTENDANCE****
+In person is pretty much required by now.
+exceptions can be made, but we need to talk about it.
+show up on time.
+we're not the military, so you dont need to be here the exact second, but later than 5 minutes is cause for concern.
+
+TIMELINE*****
+as of this message, 14 days.
+there are 14 days until our final presentation.
+it's high time to get working.
+my advice, start now.
+remember, finals season is practically here, dont hurt yourself, and the rest of the team by starting too late.
+
+FACULTY OVERSIGHT*****
+We're being watched.
+the faculty knows whos responsible for which pieces.
+So, there's no stealing of credit, and You'll be responsible if something dosen't work.
+
+WHAT MARCUS NEEDS FROM HUY*****
+You know that you need to work on the mobile node, so I would say, complete a prototype on a breadboard.
+I need to be able to recieve a MESHTASTIC packet and record it into my database for telemetry reasons.
+this packet needs to have a command for an LED in it.
+
+WHAT MARCUS NEEDS FROM ALEX*****
+I need you to put your code on github, and everything I need to flash an ESP and have my own sensing node for testing.
+I need to verify that I can send commands to it.
+My sensing node will be a carbon copy of yours, I won't know how it works, just that it does.
+your sensing node needs to be able to recieve a MESHTASTIC packet, not LoRa point to point, and turn on an LED to represent an actuator.
+How exactly this is done is up to you, and it's too late for us to get caught up in the explanation, but it needs to work and work reliably.
+you do need to have it completely finished BEFORE december 5, so we can demo.
+As you complete updates, they need to make their way onto github.
+this is so that I can continuosly verify that the Pi node works.
+I'd suggest that you remove the distance and lux sensors for simplicity sake, and just focus on temperature and humidity.
+If they say, "you only got 2 sensors!" tell them that you can add more, and will on the final project, but for now, this is a prototype.
+your sensors need to be calibrated, like your real sensors will be, this is to demonstrate that you do know how to calibrate, and you're aware that it needs to be done.
+your sensors need to be tested for accuracy and precision, this is to demonstrate that you do know how to do it, and plan to do so next semester.
+you need 2 LEDS. I should be able to turn either on or off at will.
+You need to thouroughly prepare and explain the entire sensing node, front to back, side to side, by the time we present on the 5th.
+The audience will ask you questions, and they will be difficult. 
+If you're not ready, it's going to cost us.
+The time for feedback has finished.
+
+JSON FORMAT FOR DATA:
+{
+  "Temperature": 12,
+  "Humidity": 20
+}
+
+JSON FORMAT FOR LED:
+{
+  "led1": true,
+  "led2": false
+}
+
+WHAT I KNOW I NEED TO PROVIDE FOR THE TEAM******
+I'll finish a script to send commands to the sensing node.
+upper and lower bounds for the sensing node can be worked on later, but I'll have a plan ready for the presentation.
+EVERY SINGLE BIT AND PIECE OF MY CODE WILL BE ON GITHUB, FREELY ACCESSIBLE, AND I ENCOURAGE YOU TO RUN IT ON YOUR OWN PI FOR YOUR OWN TESTING.
+NOT ONLY WILL IT EXIST THERE, I WILL WRITE MANUALS FOR EVERYTHING THAT IS REASONABLE TO.	
+
+CLOSING THOUGHTS******
+Look, we're in a tight spot.
+we CAN make it, but it's going to take work.
+my message is targeted and direct, not towards any one of us, but towards the problems we're facing.
+speaking for myself, I can honestly say that I am afraid.
+I am afraid that we wont pass.
+I am fatigued, and I cannot endure any more hardships.
+From day one, I've tried my best to be a good teammate, keeping my head down and working.
+I will continue to do so.
+I will say that I cannot do this alone, I cannot save this team by myself.
+It requires effort from all of us, if any of us falls, we all fall.
+Please read and heed my message.
+If this all goes kaboom, at least I can say I tried.

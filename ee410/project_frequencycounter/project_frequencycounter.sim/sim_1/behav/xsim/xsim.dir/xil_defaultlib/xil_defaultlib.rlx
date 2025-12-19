@@ -1,0 +1,7 @@
+0.7
+2020.2
+May 22 2025
+00:13:55
+C:/Users/Marcus Serrano/Documents/Vivado/project_frequencycounter/project_frequencycounter.sim/sim_1/behav/xsim/glbl.v,1741209010,verilog,,,,glbl,,,,,,,,
+C:/Users/Marcus Serrano/Documents/Vivado/project_frequencycounter/project_frequencycounter.srcs/sim_1/new/tb.v,1760585705,verilog,,,,tb_min,,,../../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef,,,,,
+C:/Users/Marcus Serrano/Documents/Vivado/project_frequencycounter/project_frequencycounter.srcs/sources_1/new/freqmeter.v,1760593266,verilog,,C:/Users/Marcus Serrano/Documents/Vivado/project_frequencycounter/project_frequencycounter.srcs/sim_1/new/tb.v,,eqprec_min;eqprec_min_io,,,../../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef,,,,,

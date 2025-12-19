@@ -1,0 +1,47 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
+| Date         : Wed Oct 15 22:30:49 2025
+| Host         : DESKTOP-7LRESV5 running 64-bit major release  (build 9200)
+| Command      : report_drc -file eqprec_min_io_drc_routed.rpt -pb eqprec_min_io_drc_routed.pb -rpx eqprec_min_io_drc_routed.rpx
+| Design       : eqprec_min_io
+| Device       : xc7z020clg400-1
+| Speed File   : -1
+| Design State : Fully Routed
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Report DRC
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: design_1
+      Design limits: <entire design considered>
+           Ruledeck: default
+             Max checks: <unlimited>
+             Checks found: 2
++---------+------------------+--------------------------+--------+
+| Rule    | Severity         | Description              | Checks |
++---------+------------------+--------------------------+--------+
+| LUTLP-1 | Critical Warning | Combinatorial Loop Alert | 1      |
+| ZPS7-1  | Warning          | PS7 block required       | 1      |
++---------+------------------+--------------------------+--------+
+
+2. REPORT DETAILS
+-----------------
+LUTLP-1#1 Critical Warning
+Combinatorial Loop Alert  
+1 LUT cells form a combinatorial loop. This can create a race condition. Timing analysis may not be accurate. The preferred resolution is to modify the design to remove combinatorial logic loops. If the loop is known and understood, this DRC can be bypassed by acknowledging the condition and setting the following XDC constraint on any one of the nets in the loop: 'set_property ALLOW_COMBINATORIAL_LOOPS TRUE [get_nets <myHier/myNet>]'. One net in the loop is ro. Please evaluate your design. The cells in the loop are: ro_inv.
+Related violations: <none>
+
+ZPS7-1#1 Warning
+PS7 block required  
+The PS7 cell must be used in this Zynq design in order to enable correct default configuration.
+Related violations: <none>
+
+

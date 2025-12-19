@@ -1,0 +1,27 @@
+#-----------------------------------------------------------
+# Vivado v2025.1 (64-bit)
+# SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
+# IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+# SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+# Start of session at: Sat Aug 30 13:09:40 2025
+# Process ID         : 11612
+# Current directory  : C:/Users/Marcus Serrano/Documents/Vivado/Seven-Segment LED Display Counters/Seven-Segment LED Display Counters.runs/synth_1
+# Command line       : vivado.exe -log Seven.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Seven.tcl
+# Log file           : C:/Users/Marcus Serrano/Documents/Vivado/Seven-Segment LED Display Counters/Seven-Segment LED Display Counters.runs/synth_1/Seven.vds
+# Journal file       : C:/Users/Marcus Serrano/Documents/Vivado/Seven-Segment LED Display Counters/Seven-Segment LED Display Counters.runs/synth_1\vivado.jou
+# Running On         : DESKTOP-7LRESV5
+# Platform           : 
+# Operating System   : 22631
+# Processor Detail   : AMD Ryzen 5 9600X 6-Core Processor             
+# CPU Frequency      : 5300 MHz
+# CPU Physical cores : 6
+# CPU Logical cores  : 12
+# Host memory        : 33883 MB
+# Swap memory        : 2147 MB
+# Total Virtual      : 36030 MB
+# Available Virtual  : 25100 MB
+#-----------------------------------------------------------
+source Seven.tcl -notrace
+WARNING: [Vivado 12-9135] Ignoring repo path (C:/Users/Marcus C:/Users/Marcus Serrano/Documents/Vivado/Seven-Segment LED Display Counters/Seven-Segment LED Display Counters.runs/synth_1/Serrano/AppData/Roaming/Xilinx/Vivado/2025.1/xhub/board_store/xilinx_board_store) because it contains no board files
+ERROR: [Board 49-71] The board_part definition was not found for tul.com.tw:pynq-z2:part0:1.0. The project's board_part property was not set, but the project's part property was set to xc7z020clg400-1. Valid board_part values can be retrieved with the 'get_board_parts' Tcl command. Check if board.repoPaths parameter is set and the board_part is installed from the tcl app store.
+INFO: [Common 17-206] Exiting Vivado at Sat Aug 30 13:09:44 2025...

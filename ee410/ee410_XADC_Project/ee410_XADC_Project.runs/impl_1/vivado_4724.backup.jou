@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2025.1 (64-bit)
+# SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
+# IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+# SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+# Start of session at: Sun Nov 23 00:47:23 2025
+# Process ID         : 4724
+# Current directory  : C:/Users/Marcus/Documents/Vivado/ee410_XADC_Project/ee410_XADC_Project.runs/impl_1
+# Command line       : vivado.exe -log top_xadc_temp.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source top_xadc_temp.tcl -notrace
+# Log file           : C:/Users/Marcus/Documents/Vivado/ee410_XADC_Project/ee410_XADC_Project.runs/impl_1/top_xadc_temp.vdi
+# Journal file       : C:/Users/Marcus/Documents/Vivado/ee410_XADC_Project/ee410_XADC_Project.runs/impl_1\vivado.jou
+# Running On         : DESKTOP-38G0AHI
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26100
+# Processor Detail   : AMD Ryzen 5 9600X 6-Core Processor             
+# CPU Frequency      : 5400 MHz
+# CPU Physical cores : 6
+# CPU Logical cores  : 12
+# Host memory        : 33883 MB
+# Swap memory        : 5100 MB
+# Total Virtual      : 38983 MB
+# Available Virtual  : 28005 MB
+#-----------------------------------------------------------
+source top_xadc_temp.tcl -notrace

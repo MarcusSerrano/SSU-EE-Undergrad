@@ -1,0 +1,313 @@
+#-----------------------------------------------------------
+# Vivado v2025.1 (64-bit)
+# SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
+# IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+# SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+# Start of session at: Sun Nov 23 01:23:49 2025
+# Process ID         : 4508
+# Current directory  : C:/Users/Marcus/Documents/Vivado/ee410_XADC_Project/ee410_XADC_Project.runs/synth_1
+# Command line       : vivado.exe -log top_xadc_temp.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top_xadc_temp.tcl
+# Log file           : C:/Users/Marcus/Documents/Vivado/ee410_XADC_Project/ee410_XADC_Project.runs/synth_1/top_xadc_temp.vds
+# Journal file       : C:/Users/Marcus/Documents/Vivado/ee410_XADC_Project/ee410_XADC_Project.runs/synth_1\vivado.jou
+# Running On         : DESKTOP-38G0AHI
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26100
+# Processor Detail   : AMD Ryzen 5 9600X 6-Core Processor             
+# CPU Frequency      : 5400 MHz
+# CPU Physical cores : 6
+# CPU Logical cores  : 12
+# Host memory        : 33883 MB
+# Swap memory        : 5100 MB
+# Total Virtual      : 38983 MB
+# Available Virtual  : 26805 MB
+#-----------------------------------------------------------
+source top_xadc_temp.tcl -notrace
+Command: read_checkpoint -auto_incremental -incremental C:/Users/Marcus/Documents/Vivado/ee410_XADC_Project/ee410_XADC_Project.srcs/utils_1/imports/synth_1/top_xadc_temp.dcp
+INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/Marcus/Documents/Vivado/ee410_XADC_Project/ee410_XADC_Project.srcs/utils_1/imports/synth_1/top_xadc_temp.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
+Command: synth_design -top top_xadc_temp -part xc7z020clg400-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Device 21-403] Loading part xc7z020clg400-1
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 2368
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1215.332 ; gain = 495.523
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'top_xadc_temp' [C:/Users/Marcus/Documents/Vivado/ee410_XADC_Project/ee410_XADC_Project.srcs/sources_1/new/top_xadc_temp.v:21]
+INFO: [Synth 8-6157] synthesizing module 'XADC' [C:/Xilinx/2025.1/Vivado/scripts/rt/data/unisim_comp.v:164403]
+	Parameter INIT_40 bound to: 16'b0000000000000000 
+	Parameter INIT_41 bound to: 16'b0000000000000000 
+	Parameter INIT_42 bound to: 16'b0000100000000000 
+	Parameter INIT_48 bound to: 16'b0000000000000000 
+	Parameter INIT_49 bound to: 16'b0000000000000000 
+	Parameter INIT_4A bound to: 16'b0000000000000000 
+	Parameter INIT_4B bound to: 16'b0000000000000000 
+	Parameter INIT_4C bound to: 16'b0000000000000000 
+	Parameter INIT_4D bound to: 16'b0000000000000000 
+	Parameter INIT_4E bound to: 16'b0000000000000000 
+	Parameter INIT_4F bound to: 16'b0000000000000000 
+	Parameter INIT_50 bound to: 16'b0000000000000000 
+	Parameter INIT_51 bound to: 16'b0000000000000000 
+	Parameter INIT_52 bound to: 16'b0000000000000000 
+	Parameter INIT_53 bound to: 16'b0000000000000000 
+	Parameter INIT_54 bound to: 16'b0000000000000000 
+	Parameter INIT_55 bound to: 16'b0000000000000000 
+	Parameter INIT_56 bound to: 16'b0000000000000000 
+	Parameter INIT_57 bound to: 16'b0000000000000000 
+	Parameter INIT_58 bound to: 16'b0000000000000000 
+	Parameter INIT_5C bound to: 16'b0000000000000000 
+	Parameter SIM_DEVICE bound to: ZYNQ - type: string 
+	Parameter SIM_MONITOR_FILE bound to: design.txt - type: string 
+INFO: [Synth 8-6155] done synthesizing module 'XADC' (0#1) [C:/Xilinx/2025.1/Vivado/scripts/rt/data/unisim_comp.v:164403]
+WARNING: [Synth 8-7071] port 'CONVST' of module 'XADC' is unconnected for instance 'u_xadc' [C:/Users/Marcus/Documents/Vivado/ee410_XADC_Project/ee410_XADC_Project.srcs/sources_1/new/top_xadc_temp.v:82]
+WARNING: [Synth 8-7071] port 'CONVSTCLK' of module 'XADC' is unconnected for instance 'u_xadc' [C:/Users/Marcus/Documents/Vivado/ee410_XADC_Project/ee410_XADC_Project.srcs/sources_1/new/top_xadc_temp.v:82]
+WARNING: [Synth 8-7071] port 'VAUXN' of module 'XADC' is unconnected for instance 'u_xadc' [C:/Users/Marcus/Documents/Vivado/ee410_XADC_Project/ee410_XADC_Project.srcs/sources_1/new/top_xadc_temp.v:82]
+WARNING: [Synth 8-7071] port 'VAUXP' of module 'XADC' is unconnected for instance 'u_xadc' [C:/Users/Marcus/Documents/Vivado/ee410_XADC_Project/ee410_XADC_Project.srcs/sources_1/new/top_xadc_temp.v:82]
+WARNING: [Synth 8-7023] instance 'u_xadc' of module 'XADC' has 24 connections declared, but only 20 given [C:/Users/Marcus/Documents/Vivado/ee410_XADC_Project/ee410_XADC_Project.srcs/sources_1/new/top_xadc_temp.v:82]
+INFO: [Synth 8-6157] synthesizing module 'pmodssd_display' [C:/Users/Marcus/Documents/Vivado/ee410_XADC_Project/ee410_XADC_Project.srcs/sources_1/new/pmodssd_display.v:21]
+INFO: [Synth 8-6155] done synthesizing module 'pmodssd_display' (0#1) [C:/Users/Marcus/Documents/Vivado/ee410_XADC_Project/ee410_XADC_Project.srcs/sources_1/new/pmodssd_display.v:21]
+INFO: [Synth 8-6155] done synthesizing module 'top_xadc_temp' (0#1) [C:/Users/Marcus/Documents/Vivado/ee410_XADC_Project/ee410_XADC_Project.srcs/sources_1/new/top_xadc_temp.v:21]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1321.449 ; gain = 601.641
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 1321.449 ; gain = 601.641
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 1321.449 ; gain = 601.641
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1321.449 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 1 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [C:/Users/Marcus/Documents/Vivado/ee410_XADC_Project/ee410_XADC_Project.srcs/constrs_1/new/pynq_z2_pmodssd.xdc]
+Finished Parsing XDC File [C:/Users/Marcus/Documents/Vivado/ee410_XADC_Project/ee410_XADC_Project.srcs/constrs_1/new/pynq_z2_pmodssd.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/Marcus/Documents/Vivado/ee410_XADC_Project/ee410_XADC_Project.srcs/constrs_1/new/pynq_z2_pmodssd.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_xadc_temp_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/top_xadc_temp_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1400.609 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1400.609 ; gain = 0.000
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1400.609 ; gain = 680.801
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg400-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1400.609 ; gain = 680.801
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1400.609 ; gain = 680.801
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1400.609 ; gain = 680.801
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   24 Bit       Adders := 1     
+	   2 Input   16 Bit       Adders := 1     
+	   2 Input    8 Bit       Adders := 1     
+	   2 Input    7 Bit       Adders := 1     
++---Registers : 
+	               16 Bit    Registers := 1     
+	               12 Bit    Registers := 4     
+	                8 Bit    Registers := 1     
+	                7 Bit    Registers := 1     
+	                4 Bit    Registers := 3     
++---Muxes : 
+	   2 Input    7 Bit        Muxes := 2     
+	   2 Input    5 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 1     
+	   2 Input    1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+DSP Report: Generating DSP mult_result_reg, operation Mode is: (A2*(B:0x1f8))'.
+DSP Report: register temp_filtered_reg is absorbed into DSP mult_result_reg.
+DSP Report: register mult_result_reg is absorbed into DSP mult_result_reg.
+DSP Report: operator mult_result0 is absorbed into DSP mult_result_reg.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1400.609 ; gain = 680.801
+---------------------------------------------------------------------------------
+ Sort Area is  mult_result_reg_0 : 0 0 : 231 231 : Used 1 time 0
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding REG is set)
++--------------+-----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name   | DSP Mapping     | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++--------------+-----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|top_xadc_temp | (A2*(B:0x1f8))' | 12     | 9      | -      | -      | 21     | 1    | 0    | -    | -    | -     | 1    | 0    | 
++--------------+-----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1572.246 ; gain = 852.438
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1602.559 ; gain = 882.750
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1602.559 ; gain = 882.750
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1818.035 ; gain = 1098.227
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1818.035 ; gain = 1098.227
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1818.035 ; gain = 1098.227
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1818.035 ; gain = 1098.227
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1818.035 ; gain = 1098.227
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1818.035 ; gain = 1098.227
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+DSP Final Report (the ' indicates corresponding REG is set)
++--------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name   | DSP Mapping | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++--------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|top_xadc_temp | ((A'*B)')'  | 12     | 9      | -      | -      | 21     | 1    | 0    | -    | -    | -     | 1    | 1    | 
++--------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+--------+------+
+|      |Cell    |Count |
++------+--------+------+
+|1     |BUFG    |     1|
+|2     |CARRY4  |    19|
+|3     |DSP48E1 |     1|
+|4     |LUT1    |     8|
+|5     |LUT2    |    28|
+|6     |LUT3    |     8|
+|7     |LUT4    |     7|
+|8     |LUT5    |     5|
+|9     |LUT6    |    19|
+|10    |XADC    |     1|
+|11    |FDCE    |    16|
+|12    |FDPE    |     4|
+|13    |FDRE    |    75|
+|14    |IBUF    |     2|
+|15    |OBUF    |    12|
++------+--------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1818.035 ; gain = 1098.227
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:11 ; elapsed = 00:00:15 . Memory (MB): peak = 1818.035 ; gain = 1019.066
+Synthesis Optimization Complete : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1818.035 ; gain = 1098.227
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1818.035 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 21 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1828.977 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: 72e08fea
+INFO: [Common 17-83] Releasing license: Synthesis
+29 Infos, 6 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:17 ; elapsed = 00:00:19 . Memory (MB): peak = 1828.977 ; gain = 1338.484
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1828.977 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/Marcus/Documents/Vivado/ee410_XADC_Project/ee410_XADC_Project.runs/synth_1/top_xadc_temp.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file top_xadc_temp_utilization_synth.rpt -pb top_xadc_temp_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sun Nov 23 01:24:12 2025...

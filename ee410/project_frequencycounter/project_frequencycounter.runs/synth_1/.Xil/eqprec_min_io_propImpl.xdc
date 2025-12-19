@@ -1,0 +1,7 @@
+set_property SRC_FILE_INFO {cfile:{C:/Users/Marcus Serrano/Documents/Vivado/project_frequencycounter/project_frequencycounter.srcs/constrs_1/new/constraint.xdc} rfile:../../../project_frequencycounter.srcs/constrs_1/new/constraint.xdc id:1} [current_design]
+set_property src_info {type:XDC file:1 line:4 export:INPUT save:INPUT read:READ} [current_design]
+set_property PACKAGE_PIN W9 [get_ports {rpio26_out}]
+set_property src_info {type:XDC file:1 line:8 export:INPUT save:INPUT read:READ} [current_design]
+set_property PACKAGE_PIN A20 [get_ports {rpio20_in}]
+set_property src_info {type:XDC file:1 line:15 export:INPUT save:INPUT read:READ} [current_design]
+set_property PACKAGE_PIN W18 [get_ports {rst_n}]

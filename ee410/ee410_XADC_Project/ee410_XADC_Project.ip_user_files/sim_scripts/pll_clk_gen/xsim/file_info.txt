@@ -1,0 +1,3 @@
+pll_clk_gen_clk_wiz.v,verilog,xil_defaultlib,../../../../ee410_XADC_Project.gen/sources_1/ip/pll_clk_gen/pll_clk_gen_clk_wiz.v,incdir="../../../ipstatic"incdir="../../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef"incdir="../../../ipstatic"
+pll_clk_gen.v,verilog,xil_defaultlib,../../../../ee410_XADC_Project.gen/sources_1/ip/pll_clk_gen/pll_clk_gen.v,incdir="../../../ipstatic"incdir="../../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef"incdir="../../../ipstatic"
+glbl.v,Verilog,xil_defaultlib,glbl.v

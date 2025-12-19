@@ -1,0 +1,7 @@
+verilog xil_defaultlib -i "../../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef" \
+"../../../../ee410_XADC_Project.gen/sources_1/ip/temp_lut_rom/sim/temp_lut_rom.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

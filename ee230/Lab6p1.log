@@ -1,0 +1,10 @@
+LTspice 24.0.12 for Windows
+Circuit: * C:\Users\Marcus Serrano\Documents\LTspice\Lab6p1.asc
+Start Time: Tue Oct 22 16:18:13 2024
+solver = Normal
+Maximum thread count: 12
+tnom = 27
+temp = 27
+method = modified trap
+Total elapsed time: 0.063 seconds.
+

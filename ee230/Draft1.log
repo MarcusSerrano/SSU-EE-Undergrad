@@ -1,0 +1,14 @@
+LTspice 24.0.12 for Windows
+Circuit: * C:\Users\Marcus Serrano\Documents\LTspice\Draft1.asc
+Start Time: Fri Oct 18 23:12:21 2024
+Error on line 3 : v§-12 0 n001 v
+	 Unknown parameter "v"
+solver = Normal
+Maximum thread count: 12
+tnom = 27
+temp = 27
+method = modified trap
+-12: Missing value, assumed 0V @ DC
+Direct Newton iteration for .op point succeeded.
+Total elapsed time: 0.069 seconds.
+

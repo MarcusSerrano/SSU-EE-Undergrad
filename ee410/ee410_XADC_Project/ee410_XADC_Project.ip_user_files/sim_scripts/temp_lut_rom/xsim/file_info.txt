@@ -1,0 +1,2 @@
+temp_lut_rom.v,verilog,xil_defaultlib,../../../../ee410_XADC_Project.gen/sources_1/ip/temp_lut_rom/sim/temp_lut_rom.v,incdir="../../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef"
+glbl.v,Verilog,xil_defaultlib,glbl.v

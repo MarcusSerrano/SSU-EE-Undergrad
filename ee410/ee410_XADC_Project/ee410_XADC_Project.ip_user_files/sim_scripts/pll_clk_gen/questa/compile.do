@@ -1,0 +1,23 @@
+vlib questa_lib/work
+vlib questa_lib/msim
+
+vlib questa_lib/msim/xpm
+vlib questa_lib/msim/xil_defaultlib
+
+vmap xpm questa_lib/msim/xpm
+vmap xil_defaultlib questa_lib/msim/xil_defaultlib
+
+vlog -work xpm  -incr -mfcu  -sv "+incdir+../../../ipstatic" "+incdir+../../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef" \
+"C:/Xilinx/2025.1/Vivado/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv" \
+"C:/Xilinx/2025.1/Vivado/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv" \
+
+vcom -work xpm  -93  \
+"C:/Xilinx/2025.1/Vivado/data/ip/xpm/xpm_VCOMP.vhd" \
+
+vlog -work xil_defaultlib  -incr -mfcu  "+incdir+../../../ipstatic" "+incdir+../../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef" \
+"../../../../ee410_XADC_Project.gen/sources_1/ip/pll_clk_gen/pll_clk_gen_clk_wiz.v" \
+"../../../../ee410_XADC_Project.gen/sources_1/ip/pll_clk_gen/pll_clk_gen.v" \
+
+vlog -work xil_defaultlib \
+"glbl.v"
+

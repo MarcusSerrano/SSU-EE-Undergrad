@@ -1,0 +1,4 @@
+xpm_cdc.sv,systemverilog,xpm,../ip/xpm/xpm_cdc/hdl/xpm_cdc.sv,incdir="../../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef"
+xpm_VCOMP.vhd,vhdl,xpm,../ip/xpm/xpm_VCOMP.vhd,incdir="../../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef"
+xadc_wiz_0.v,verilog,xil_defaultlib,../../../../ee410_XADC_Project.gen/sources_1/ip/xadc_wiz_0/xadc_wiz_0.v,incdir="../../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef"
+glbl.v,Verilog,xil_defaultlib,glbl.v

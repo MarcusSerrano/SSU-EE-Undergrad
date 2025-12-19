@@ -1,0 +1,8 @@
+0.7
+2020.2
+May 22 2025
+00:13:55
+C:/Users/Marcus/Documents/Vivado/ee410_HW5/ee410_HW5.sim/sim_1/behav/xsim/glbl.v,1741209010,verilog,,,,glbl,,,,,,,,
+C:/Users/Marcus/Documents/Vivado/ee410_HW5/ee410_HW5.srcs/sim_1/new/tb_101_sequence_detectors.v,1763705550,verilog,,,,tb_101_sequence_detectors,,,../../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef,,,,,
+C:/Users/Marcus/Documents/Vivado/ee410_HW5/ee410_HW5.srcs/sources_1/new/mealy_101_detector.v,1763705486,verilog,,C:/Users/Marcus/Documents/Vivado/ee410_HW5/ee410_HW5.srcs/sources_1/new/moore_101_detector.v,,mealy_101_detector,,,../../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef,,,,,
+C:/Users/Marcus/Documents/Vivado/ee410_HW5/ee410_HW5.srcs/sources_1/new/moore_101_detector.v,1763705522,verilog,,C:/Users/Marcus/Documents/Vivado/ee410_HW5/ee410_HW5.srcs/sim_1/new/tb_101_sequence_detectors.v,,moore_101_detector,,,../../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef,,,,,

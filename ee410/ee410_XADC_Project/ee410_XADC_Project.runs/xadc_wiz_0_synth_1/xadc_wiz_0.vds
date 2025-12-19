@@ -1,0 +1,253 @@
+#-----------------------------------------------------------
+# Vivado v2025.1 (64-bit)
+# SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
+# IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+# SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+# Start of session at: Sat Nov 22 22:04:26 2025
+# Process ID         : 4472
+# Current directory  : C:/Users/Marcus/Documents/Vivado/ee410_XADC_Project/ee410_XADC_Project.runs/xadc_wiz_0_synth_1
+# Command line       : vivado.exe -log xadc_wiz_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source xadc_wiz_0.tcl
+# Log file           : C:/Users/Marcus/Documents/Vivado/ee410_XADC_Project/ee410_XADC_Project.runs/xadc_wiz_0_synth_1/xadc_wiz_0.vds
+# Journal file       : C:/Users/Marcus/Documents/Vivado/ee410_XADC_Project/ee410_XADC_Project.runs/xadc_wiz_0_synth_1\vivado.jou
+# Running On         : DESKTOP-38G0AHI
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26100
+# Processor Detail   : AMD Ryzen 5 9600X 6-Core Processor             
+# CPU Frequency      : 5400 MHz
+# CPU Physical cores : 6
+# CPU Logical cores  : 12
+# Host memory        : 33883 MB
+# Swap memory        : 5100 MB
+# Total Virtual      : 38983 MB
+# Available Virtual  : 27970 MB
+#-----------------------------------------------------------
+source xadc_wiz_0.tcl -notrace
+Command: synth_design -top xadc_wiz_0 -part xc7z020clg400-1 -incremental_mode off -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Device 21-403] Loading part xc7z020clg400-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 9732
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1219.578 ; gain = 493.113
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'xadc_wiz_0' [c:/Users/Marcus/Documents/Vivado/ee410_XADC_Project/ee410_XADC_Project.gen/sources_1/ip/xadc_wiz_0/xadc_wiz_0.v:50]
+INFO: [Synth 8-6157] synthesizing module 'XADC' [C:/Xilinx/2025.1/Vivado/scripts/rt/data/unisim_comp.v:164403]
+	Parameter INIT_40 bound to: 16'b0000000000000000 
+	Parameter INIT_41 bound to: 16'b0011000110100000 
+	Parameter INIT_42 bound to: 16'b0000010000000000 
+	Parameter INIT_48 bound to: 16'b0000000100000000 
+	Parameter INIT_49 bound to: 16'b0000000000000000 
+	Parameter INIT_4A bound to: 16'b0000000000000000 
+	Parameter INIT_4B bound to: 16'b0000000000000000 
+	Parameter INIT_4C bound to: 16'b0000000000000000 
+	Parameter INIT_4D bound to: 16'b0000000000000000 
+	Parameter INIT_4E bound to: 16'b0000000000000000 
+	Parameter INIT_4F bound to: 16'b0000000000000000 
+	Parameter INIT_50 bound to: 16'b1011010111101101 
+	Parameter INIT_51 bound to: 16'b0101011111100100 
+	Parameter INIT_52 bound to: 16'b1010000101000111 
+	Parameter INIT_53 bound to: 16'b1100101000110011 
+	Parameter INIT_54 bound to: 16'b1010100100111010 
+	Parameter INIT_55 bound to: 16'b0101001011000110 
+	Parameter INIT_56 bound to: 16'b1001010101010101 
+	Parameter INIT_57 bound to: 16'b1010111001001110 
+	Parameter INIT_58 bound to: 16'b0101100110011001 
+	Parameter INIT_59 bound to: 16'b0101010101010101 
+	Parameter INIT_5A bound to: 16'b1001100110011001 
+	Parameter INIT_5B bound to: 16'b0110101010101010 
+	Parameter INIT_5C bound to: 16'b0101000100010001 
+	Parameter INIT_5D bound to: 16'b0101000100010001 
+	Parameter INIT_5E bound to: 16'b1001000111101011 
+	Parameter INIT_5F bound to: 16'b0110011001100110 
+	Parameter SIM_DEVICE bound to: ZYNQ - type: string 
+	Parameter SIM_MONITOR_FILE bound to: design.txt - type: string 
+INFO: [Synth 8-6155] done synthesizing module 'XADC' (0#1) [C:/Xilinx/2025.1/Vivado/scripts/rt/data/unisim_comp.v:164403]
+INFO: [Synth 8-6155] done synthesizing module 'xadc_wiz_0' (0#1) [c:/Users/Marcus/Documents/Vivado/ee410_XADC_Project/ee410_XADC_Project.gen/sources_1/ip/xadc_wiz_0/xadc_wiz_0.v:50]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:03 . Memory (MB): peak = 1327.387 ; gain = 600.922
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:03 . Memory (MB): peak = 1327.387 ; gain = 600.922
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:03 . Memory (MB): peak = 1327.387 ; gain = 600.922
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1327.387 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 1 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [c:/Users/Marcus/Documents/Vivado/ee410_XADC_Project/ee410_XADC_Project.gen/sources_1/ip/xadc_wiz_0/xadc_wiz_0_ooc.xdc] for cell 'inst'
+Finished Parsing XDC File [c:/Users/Marcus/Documents/Vivado/ee410_XADC_Project/ee410_XADC_Project.gen/sources_1/ip/xadc_wiz_0/xadc_wiz_0_ooc.xdc] for cell 'inst'
+Parsing XDC File [c:/Users/Marcus/Documents/Vivado/ee410_XADC_Project/ee410_XADC_Project.gen/sources_1/ip/xadc_wiz_0/xadc_wiz_0.xdc] for cell 'inst'
+Finished Parsing XDC File [c:/Users/Marcus/Documents/Vivado/ee410_XADC_Project/ee410_XADC_Project.gen/sources_1/ip/xadc_wiz_0/xadc_wiz_0.xdc] for cell 'inst'
+Parsing XDC File [C:/Users/Marcus/Documents/Vivado/ee410_XADC_Project/ee410_XADC_Project.runs/xadc_wiz_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [C:/Users/Marcus/Documents/Vivado/ee410_XADC_Project/ee410_XADC_Project.runs/xadc_wiz_0_synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1327.387 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.010 . Memory (MB): peak = 1327.387 ; gain = 0.000
+INFO: [Designutils 20-5008] Incremental synthesis strategy off
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:08 ; elapsed = 00:00:07 . Memory (MB): peak = 1327.387 ; gain = 600.922
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg400-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:08 ; elapsed = 00:00:07 . Memory (MB): peak = 1327.387 ; gain = 600.922
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:08 ; elapsed = 00:00:07 . Memory (MB): peak = 1327.387 ; gain = 600.922
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1327.387 ; gain = 600.922
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:09 ; elapsed = 00:00:08 . Memory (MB): peak = 1339.020 ; gain = 612.555
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:12 ; elapsed = 00:00:11 . Memory (MB): peak = 1515.926 ; gain = 789.461
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:12 ; elapsed = 00:00:11 . Memory (MB): peak = 1515.926 ; gain = 789.461
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:12 ; elapsed = 00:00:11 . Memory (MB): peak = 1525.484 ; gain = 799.020
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:14 ; elapsed = 00:00:13 . Memory (MB): peak = 1760.793 ; gain = 1034.328
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:14 ; elapsed = 00:00:13 . Memory (MB): peak = 1760.793 ; gain = 1034.328
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:14 ; elapsed = 00:00:13 . Memory (MB): peak = 1760.793 ; gain = 1034.328
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:14 ; elapsed = 00:00:13 . Memory (MB): peak = 1760.793 ; gain = 1034.328
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:14 ; elapsed = 00:00:13 . Memory (MB): peak = 1760.793 ; gain = 1034.328
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:14 ; elapsed = 00:00:13 . Memory (MB): peak = 1760.793 ; gain = 1034.328
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-----+------+
+|      |Cell |Count |
++------+-----+------+
+|1     |XADC |     1|
++------+-----+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:14 ; elapsed = 00:00:13 . Memory (MB): peak = 1760.793 ; gain = 1034.328
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:09 ; elapsed = 00:00:13 . Memory (MB): peak = 1760.793 ; gain = 1034.328
+Synthesis Optimization Complete : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 1760.793 ; gain = 1034.328
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1760.793 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 1 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1773.574 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: b3d94bfe
+INFO: [Common 17-83] Releasing license: Synthesis
+21 Infos, 1 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1773.574 ; gain = 1277.699
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1773.574 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/Marcus/Documents/Vivado/ee410_XADC_Project/ee410_XADC_Project.runs/xadc_wiz_0_synth_1/xadc_wiz_0.dcp' has been generated.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP xadc_wiz_0, cache-ID = ee5dbf70e7bd86f6
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1773.574 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/Marcus/Documents/Vivado/ee410_XADC_Project/ee410_XADC_Project.runs/xadc_wiz_0_synth_1/xadc_wiz_0.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file xadc_wiz_0_utilization_synth.rpt -pb xadc_wiz_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sat Nov 22 22:04:46 2025...
